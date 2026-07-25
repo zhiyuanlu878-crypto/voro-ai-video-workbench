@@ -22,6 +22,152 @@ const shots = [
   { id: "05", title: "编队对抗", desc: "两支不同编队在复杂海况下机动对抗，保持真实尺度与空间关系", time: "10s", type: "超远景", color: "violet", weather: "风雨 · 5级浪" },
 ];
 
+const stageContent = [
+  {
+    kicker: "步骤 01 · 项目需求",
+    title: "定义这支视频要解决什么问题",
+    desc: "先锁定目标、受众、时长和必须呈现的内容，后续步骤都从这里继承。",
+    sections: [
+      { title: "项目目标", text: "重点显示水面舰船装备效果，展示国内外主力列装型号及海洋环境下的真实表现。", tag: "核心需求" },
+      { title: "重点内容", text: "航行效果、舰船三维模型、舰炮射击、舰载机启停、编队对抗。", tag: "5 项" },
+      { title: "环境范围", text: "不同等级海浪，以及晴、多云、雨、雪等天气变化。", tag: "海洋环境" },
+      { title: "输出规格", text: "16:9 横屏，写实视觉，建议总时长 90 秒，4K 母版。", tag: "90 秒" },
+    ],
+    checklist: ["装备型号与布局尽量准确", "运动、尺度和海况关系真实", "不绑定生成服务", "允许逐步骤人工确认"],
+  },
+  {
+    kicker: "步骤 02 · 创作方案",
+    title: "确定视频的表达策略",
+    desc: "把需求转成统一的叙事方向、视觉策略和节奏计划。",
+    sections: [
+      { title: "创作定位", text: "高写实海洋装备视觉演示，兼顾型号展示、技术效果与对抗氛围。", tag: "写实演示" },
+      { title: "叙事路径", text: "环境建立 → 单舰展示 → 装备动作 → 舰载机作业 → 编队对抗。", tag: "递进结构" },
+      { title: "视觉策略", text: "海面低机位突出体量，空中俯拍说明编队关系，特写呈现装备细节。", tag: "多机位" },
+      { title: "真实感策略", text: "锁定型号参考、物理尺度、海浪方向、光照和武器动作连续性。", tag: "强约束" },
+    ],
+    checklist: ["冷静、专业的整体基调", "避免夸张科幻效果", "关键动作使用多视角", "天气变化服务内容节奏"],
+  },
+  {
+    kicker: "步骤 03 · 内容结构",
+    title: "把 90 秒内容组织成清晰章节",
+    desc: "每一章节都有目标、时长和交付物，修改时不会牵动整支视频。",
+    sections: [
+      { title: "01 海洋环境建立", text: "不同海况与天气下的远洋画面，建立真实空间与尺度。", tag: "12 秒" },
+      { title: "02 主力型号巡航", text: "国内外主力列装型号依次出现，展示外形与航行姿态。", tag: "22 秒" },
+      { title: "03 装备动作演示", text: "三维模型拆解、雷达工作、主炮转向与射击效果。", tag: "20 秒" },
+      { title: "04 舰载机作业", text: "启动、甲板滑行、起飞和着舰流程的连续呈现。", tag: "16 秒" },
+      { title: "05 编队对抗", text: "不同编队在复杂海况中的机动、协同与对抗收束。", tag: "20 秒" },
+    ],
+    checklist: ["总时长 90 秒", "五章结构已覆盖全部需求", "章节可独立调整", "结尾保留编队全景"],
+  },
+  {
+    kicker: "步骤 04 · 场景设计",
+    title: "建立可复用的海洋场景库",
+    desc: "场景负责统一天气、海况、时间和空间，多个镜头可以共享同一场景。",
+    sections: [
+      { title: "远洋晴天", text: "开阔海域，能见度高，2—3 级浪，适合型号与编队全景。", tag: "场景 A" },
+      { title: "阴天高海况", text: "厚云层、冷色天光、4—5 级浪，适合航行体量和舰炮动作。", tag: "场景 B" },
+      { title: "风雨对抗海域", text: "阵雨、低能见度、强风浪，适合编队机动和对抗氛围。", tag: "场景 C" },
+      { title: "雪天近岸海域", text: "低温、轻雪、灰蓝色海面，用于极端天气能力展示。", tag: "场景 D" },
+    ],
+    checklist: ["海浪方向连续", "天气与光照匹配", "地平线保持稳定", "场景参数可被镜头覆盖"],
+  },
+  null,
+  {
+    kicker: "步骤 06 · 视觉设定",
+    title: "锁定型号、材质与效果标准",
+    desc: "集中管理所有镜头必须继承的视觉资产，避免舰体和装备在生成时发生漂移。",
+    sections: [
+      { title: "舰船型号库", text: "按国家、类别和列装状态管理参考图、三维模型及装备布局。", tag: "8 个型号" },
+      { title: "海洋环境库", text: "海浪等级、风向、天气、能见度、时间和光照预设。", tag: "12 个预设" },
+      { title: "装备效果库", text: "炮口火焰、烟尘、尾流、雷达转动和甲板作业效果标准。", tag: "已定义" },
+      { title: "写实标准", text: "金属材质、尺度透视、光照反射、海水交互与运动惯性。", tag: "高写实" },
+    ],
+    checklist: ["型号参考已锁定", "不改变装备位置", "不混用国家标识", "特效符合环境光"],
+  },
+  {
+    kicker: "步骤 07 · 关键帧",
+    title: "先确认静态画面，再生成运动",
+    desc: "每个镜头先确定构图、型号、环境和动作起止状态，减少视频反复生成。",
+    sections: [
+      { title: "远洋航行", text: "舰体比例正确，舰艏劈浪与尾流方向已确认。", tag: "待生成" },
+      { title: "三维环绕", text: "模型材质、雷达与甲板装备布局需要参考校验。", tag: "待生成" },
+      { title: "主炮射击", text: "确认炮口方向、火焰尺度、烟尘和海况光照。", tag: "待生成" },
+      { title: "舰载机起飞", text: "确认甲板站位、飞机尺度、起飞方向和安全区域。", tag: "待生成" },
+      { title: "编队对抗", text: "确认双方编队间距、航向、海况与画面层次。", tag: "待生成" },
+    ],
+    checklist: ["生成服务尚未配置", "可上传已有参考帧", "每个镜头可保留多版本", "确认后锁定为视频参考"],
+  },
+  {
+    kicker: "步骤 08 · 视频片段",
+    title: "按镜头独立生成和调整",
+    desc: "不同镜头可以选用不同服务。工作台只管理统一参数、任务状态和结果版本。",
+    sections: [
+      { title: "图生视频服务", text: "用于关键帧驱动的航行、环绕、射击和舰载机动作。", tag: "未接入" },
+      { title: "三维渲染服务", text: "用于需要严格型号和装备结构的模型展示片段。", tag: "未接入" },
+      { title: "环境效果服务", text: "用于海浪、尾流、雨雪、云层和光照效果增强。", tag: "未接入" },
+      { title: "质量检查", text: "检查结构漂移、物理异常、帧间闪烁和镜头衔接。", tag: "规则已就绪" },
+    ],
+    checklist: ["服务由项目自行配置", "无需注册工作台账号", "失败只重做当前镜头", "结果统一进入版本库"],
+  },
+  {
+    kicker: "步骤 09 · 合成输出",
+    title: "把已确认片段组合成完整成片",
+    desc: "统一节奏、声音、字幕和色彩，任何问题都可以回到对应步骤修改。",
+    sections: [
+      { title: "画面时间线", text: "五章、12 个计划镜头，当前等待关键帧和视频片段。", tag: "90 秒" },
+      { title: "声音设计", text: "海浪、风雨、引擎、甲板作业和装备动作分轨管理。", tag: "5 条音轨" },
+      { title: "字幕与标注", text: "型号、装备名称、环境参数和章节标题使用统一样式。", tag: "待编辑" },
+      { title: "输出版本", text: "4K 16:9 母版、1080P 审阅版和无字幕净版。", tag: "3 种规格" },
+    ],
+    checklist: ["统一色彩与音量", "检查型号标注", "确认对抗镜头连续性", "导出前执行全片检查"],
+  },
+] as const;
+
+function StageView({ index, onNext, onBack, notify }: { index: number; onNext: () => void; onBack: () => void; notify: (message: string) => void }) {
+  const data = stageContent[index];
+  if (!data) return null;
+  return (
+    <>
+      <section className="canvas stage-canvas">
+        <div className="stage-hero">
+          <div>
+            <div className="eyebrow"><span>{data.kicker}</span></div>
+            <h1>{data.title}</h1>
+            <p>{data.desc}</p>
+          </div>
+          <button className="lock-btn" onClick={() => notify(`${stages[index][1]}已锁定`)}>○ 锁定本步骤</button>
+        </div>
+        <div className="inherit-bar"><span>上游输入</span><strong>{index === 0 ? "用户原始需求" : stages[index - 1][1]}</strong><i>→</i><span>当前产物</span><strong>{stages[index][1]}方案</strong></div>
+        <div className="stage-grid">
+          {data.sections.map((item, itemIndex) => (
+            <button className="stage-feature" key={item.title} onClick={() => notify(`已打开：${item.title}`)}>
+              <div className="feature-top"><span>{String(itemIndex + 1).padStart(2, "0")}</span><em>{item.tag}</em></div>
+              <strong>{item.title}</strong>
+              <p>{item.text}</p>
+              <small>点击查看与编辑 →</small>
+            </button>
+          ))}
+        </div>
+        <div className="stage-bottom">
+          <button disabled={index === 0} onClick={onBack}>← 上一步</button>
+          <div><span>当前为演示数据</span><small>字段、内容和节点均可按项目调整</small></div>
+          <button className="primary" onClick={onNext}>{index === 8 ? "完成项目检查" : `确认并进入${stages[index + 1][1]} →`}</button>
+        </div>
+      </section>
+      <aside className="inspector stage-inspector">
+        <div className="inspector-head"><div><span>步骤检查</span><strong>{stages[index][1]}确认清单</strong></div><button>•••</button></div>
+        <div className="step-summary"><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{data.title}</strong><small>{data.sections.length} 个可编辑模块</small></div></div>
+        <div className="check-list">
+          {data.checklist.map((item, i) => <label key={item}><input type="checkbox" defaultChecked={i < 2} /><span>{item}</span></label>)}
+        </div>
+        <div className="dependency-card"><strong>修改影响</strong><p>本步骤修改后，系统会标记受影响的下游内容，不会自动覆盖已确认版本。</p><button onClick={() => notify("已查看下游影响范围")}>查看影响范围</button></div>
+        <div className="provider-card"><span>生成服务</span><strong>项目未配置</strong><p>需要生成素材时，可接入任意兼容服务。</p><button onClick={() => notify("已打开生成服务配置")}>配置服务</button></div>
+      </aside>
+    </>
+  );
+}
+
 export default function Home() {
   const [activeStage, setActiveStage] = useState(4);
   const [selectedShot, setSelectedShot] = useState(2);
@@ -87,6 +233,8 @@ export default function Home() {
           </div>
         </aside>
 
+        {activeStage === 4 ? (
+        <>
         <section className="canvas">
           <div className="canvas-head">
             <div>
@@ -99,6 +247,7 @@ export default function Home() {
               <button className={`lock-btn ${locked ? "is-locked" : ""}`} onClick={() => { setLocked(!locked); notify(!locked ? "分镜已锁定" : "分镜已解锁"); }}>
                 {locked ? "● 已锁定" : "○ 锁定分镜"}
               </button>
+              <button className="next-stage" onClick={() => { setActiveStage(5); notify("已进入：视觉设定"); }}>进入视觉设定 →</button>
             </div>
           </div>
 
@@ -188,6 +337,22 @@ export default function Home() {
             <button className="confirm" onClick={() => notify(`镜头 ${shots[selectedShot].id} 已确认`)}>确认镜头</button>
           </div>
         </aside>
+        </>
+        ) : (
+          <StageView
+            index={activeStage}
+            onBack={() => setActiveStage(Math.max(0, activeStage - 1))}
+            onNext={() => {
+              if (activeStage < 8) {
+                setActiveStage(activeStage + 1);
+                notify(`已进入：${stages[activeStage + 1][1]}`);
+              } else {
+                notify("项目流程检查完成");
+              }
+            }}
+            notify={notify}
+          />
+        )}
       </section>
       {toast && <div className="toast">✓ {toast}</div>}
     </main>
