@@ -3,15 +3,27 @@
 import { useState } from "react";
 
 const stages = [
-  ["01", "需求", "已锁定"],
-  ["02", "创作方案", "已锁定"],
+  ["01", "需求", "已完成"],
+  ["02", "创作方案", "已完成"],
   ["03", "内容结构", "已完成"],
-  ["04", "场景", "3 个场景"],
-  ["05", "分镜", "编辑中"],
-  ["06", "视觉设定", "待确认"],
-  ["07", "关键帧", "未开始"],
-  ["08", "视频片段", "未开始"],
-  ["09", "合成", "未开始"],
+  ["04", "场景", "已完成"],
+  ["05", "分镜", "已完成"],
+  ["06", "视觉设定", "已完成"],
+  ["07", "关键帧", "已完成"],
+  ["08", "视频片段", "已完成"],
+  ["09", "合成", "已完成"],
+];
+
+const providers = [
+  { name: "GPT-5.6 Sol", app: "需求结构化", detail: "长文本理解、约束提取与结构化项目简报" },
+  { name: "GPT-5.6 Sol", app: "创意策划", detail: "叙事策略、视觉方向与制作方案推演" },
+  { name: "GPT-5.6 Sol", app: "内容编排", detail: "章节结构、时长分配与内容完整性检查" },
+  { name: "GPT-5.6 Sol + GPT Image 2", app: "场景设计", detail: "环境描述、场景预演与视觉参考生成" },
+  { name: "GPT-5.6 Sol", app: "分镜规划", detail: "镜头拆解、景别、机位、运镜与连续性" },
+  { name: "GPT Image 2", app: "视觉设定", detail: "型号参考、材质、天气与效果概念图" },
+  { name: "GPT Image 2", app: "关键帧生成", detail: "高写实静态帧、构图确认与局部调整" },
+  { name: "Runway Gen-4.5", app: "视频片段生成", detail: "文本或关键帧驱动的视频镜头生成" },
+  { name: "ElevenLabs + FFmpeg", app: "声音与合成", detail: "环境音效生成、分轨混音与最终成片" },
 ];
 
 const shots = [
@@ -90,23 +102,23 @@ const stageContent = [
     title: "先确认静态画面，再生成运动",
     desc: "每个镜头先确定构图、型号、环境和动作起止状态，减少视频反复生成。",
     sections: [
-      { title: "远洋航行", text: "舰体比例正确，舰艏劈浪与尾流方向已确认。", tag: "待生成" },
-      { title: "三维环绕", text: "模型材质、雷达与甲板装备布局需要参考校验。", tag: "待生成" },
-      { title: "主炮射击", text: "确认炮口方向、火焰尺度、烟尘和海况光照。", tag: "待生成" },
-      { title: "舰载机起飞", text: "确认甲板站位、飞机尺度、起飞方向和安全区域。", tag: "待生成" },
-      { title: "编队对抗", text: "确认双方编队间距、航向、海况与画面层次。", tag: "待生成" },
+      { title: "远洋航行", text: "舰体比例正确，舰艏劈浪与尾流方向已确认。", tag: "已确认" },
+      { title: "三维环绕", text: "模型材质、雷达与甲板装备布局已完成参考校验。", tag: "已确认" },
+      { title: "主炮射击", text: "炮口方向、火焰尺度、烟尘和海况光照已确认。", tag: "已确认" },
+      { title: "舰载机起飞", text: "甲板站位、飞机尺度、起飞方向和安全区域已确认。", tag: "已确认" },
+      { title: "编队对抗", text: "双方编队间距、航向、海况与画面层次已确认。", tag: "已确认" },
     ],
-    checklist: ["生成服务尚未配置", "可上传已有参考帧", "每个镜头可保留多版本", "确认后锁定为视频参考"],
+    checklist: ["GPT Image 2 已完成关键帧", "已有参考帧已归档", "每个镜头保留多版本", "选定版本已锁定为视频参考"],
   },
   {
     kicker: "步骤 08 · 视频片段",
     title: "按镜头独立生成和调整",
     desc: "不同镜头可以选用不同服务。工作台只管理统一参数、任务状态和结果版本。",
     sections: [
-      { title: "图生视频服务", text: "用于关键帧驱动的航行、环绕、射击和舰载机动作。", tag: "未接入" },
-      { title: "三维渲染服务", text: "用于需要严格型号和装备结构的模型展示片段。", tag: "未接入" },
-      { title: "环境效果服务", text: "用于海浪、尾流、雨雪、云层和光照效果增强。", tag: "未接入" },
-      { title: "质量检查", text: "检查结构漂移、物理异常、帧间闪烁和镜头衔接。", tag: "规则已就绪" },
+      { title: "图生视频服务", text: "关键帧驱动的航行、环绕、射击和舰载机动作已生成。", tag: "12 / 12" },
+      { title: "三维渲染服务", text: "严格型号和装备结构的模型展示片段已完成。", tag: "已完成" },
+      { title: "环境效果服务", text: "海浪、尾流、雨雪、云层和光照效果已完成增强。", tag: "已完成" },
+      { title: "质量检查", text: "已检查结构漂移、物理异常、帧间闪烁和镜头衔接。", tag: "已通过" },
     ],
     checklist: ["服务由项目自行配置", "无需注册工作台账号", "失败只重做当前镜头", "结果统一进入版本库"],
   },
@@ -149,6 +161,22 @@ function StageView({ index, onNext, onBack, notify }: { index: number; onNext: (
             </button>
           ))}
         </div>
+        {index === 8 && (
+          <div className="final-result">
+            <div className="final-screen">
+              <div className="ocean-lines"><i /><i /><i /></div>
+              <div className="final-ship"><i /></div>
+              <button onClick={() => notify("正在播放 90 秒审阅版")}>▶</button>
+              <span>海洋舰船装备效果演示 · 最终审阅版</span>
+            </div>
+            <div className="result-stats">
+              <div><strong>90s</strong><span>成片时长</span></div>
+              <div><strong>12</strong><span>确认镜头</span></div>
+              <div><strong>4K</strong><span>母版规格</span></div>
+              <div><strong>100%</strong><span>流程完成</span></div>
+            </div>
+          </div>
+        )}
         <div className="stage-bottom">
           <button disabled={index === 0} onClick={onBack}>← 上一步</button>
           <div><span>当前为演示数据</span><small>字段、内容和节点均可按项目调整</small></div>
@@ -162,13 +190,55 @@ function StageView({ index, onNext, onBack, notify }: { index: number; onNext: (
           {data.checklist.map((item, i) => <label key={item}><input type="checkbox" defaultChecked={i < 2} /><span>{item}</span></label>)}
         </div>
         <div className="dependency-card"><strong>修改影响</strong><p>本步骤修改后，系统会标记受影响的下游内容，不会自动覆盖已确认版本。</p><button onClick={() => notify("已查看下游影响范围")}>查看影响范围</button></div>
-        <div className="provider-card"><span>生成服务</span><strong>项目未配置</strong><p>需要生成素材时，可接入任意兼容服务。</p><button onClick={() => notify("已打开生成服务配置")}>配置服务</button></div>
+        <div className="provider-card"><span>当前步骤推荐应用</span><strong>{providers[index].name}</strong><p>{providers[index].detail}</p><button onClick={() => notify(`已打开 ${providers[index].name} 接入配置`)}>查看接入配置</button></div>
       </aside>
     </>
   );
 }
 
+function ProjectHub({ onOpen }: { onOpen: () => void }) {
+  return (
+    <main className="project-hub">
+      <header className="hub-header">
+        <div className="brand"><span className="brand-mark">V</span><span>VORO</span><span className="brand-sub">通用视频制作工作台</span></div>
+        <button className="service-center">◇ 生成服务中心 · 5 项可用</button>
+      </header>
+      <section className="hub-content">
+        <div className="hub-intro">
+          <div><span className="hub-kicker">项目中心</span><h1>选择一个项目开始制作</h1><p>每个项目独立保存流程、模型配置、素材、版本和最终成片。</p></div>
+          <button className="new-project">＋ 新建项目</button>
+        </div>
+        <div className="project-filters"><button className="active">全部项目 1</button><button>制作中 0</button><button>已完成 1</button><button>模板</button></div>
+        <div className="project-grid">
+          <button className="project-card featured" onClick={onOpen}>
+            <div className="project-cover">
+              <span className="complete-pill">✓ 已完整跑通</span>
+              <div className="cover-sea"><i /><i /><i /></div>
+              <div className="cover-ship"><i /></div>
+              <div className="cover-title"><span>示范项目</span><strong>海洋舰船装备效果演示</strong></div>
+            </div>
+            <div className="project-info">
+              <div><strong>海洋舰船装备效果演示</strong><span>装备演示 · 90 秒 · 16:9 · 4K</span></div>
+              <span className="open-arrow">进入项目 →</span>
+            </div>
+            <div className="project-progress"><span><i /></span><strong>9 / 9 步骤已完成</strong></div>
+          </button>
+          <button className="empty-project">
+            <span>＋</span><strong>创建空白项目</strong><small>选择模板或自定义制作流程</small>
+          </button>
+        </div>
+        <div className="model-strip">
+          <span>该示范项目使用的应用编排</span>
+          {["GPT-5.6 Sol", "GPT Image 2", "Runway Gen-4.5", "ElevenLabs", "FFmpeg"].map(name => <b key={name}>{name}</b>)}
+          <em>均可替换</em>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 export default function Home() {
+  const [inProject, setInProject] = useState(false);
   const [activeStage, setActiveStage] = useState(4);
   const [selectedShot, setSelectedShot] = useState(2);
   const [locked, setLocked] = useState(false);
@@ -180,6 +250,8 @@ export default function Home() {
     window.setTimeout(() => setToast(""), 2200);
   };
 
+  if (!inProject) return <ProjectHub onOpen={() => setInProject(true)} />;
+
   return (
     <main className="app-shell">
       <header className="topbar">
@@ -189,7 +261,7 @@ export default function Home() {
           <span className="brand-sub">通用视频制作工作台</span>
         </div>
         <div className="project-name">
-          <button aria-label="返回项目">‹</button>
+          <button aria-label="返回项目" onClick={() => setInProject(false)}>‹</button>
           <div>
             <strong>海洋舰船装备效果演示</strong>
             <span>装备演示 · 40 秒 · 16:9</span>
@@ -198,7 +270,7 @@ export default function Home() {
         </div>
         <div className="top-actions">
           <button className="ghost" onClick={() => notify("已打开版本记录")}>↶ 版本记录</button>
-          <button className="provider" onClick={() => notify("可接入任意图像、视频、声音生成服务")}>◇ 生成服务 · 未配置</button>
+          <button className="provider" onClick={() => notify("已打开项目生成服务编排")}>◇ 生成服务 · 5 项已配置</button>
           <button className="export" onClick={() => notify("项目已进入导出准备")}>导出项目</button>
         </div>
       </header>
@@ -210,17 +282,17 @@ export default function Home() {
             <button aria-label="流程设置">•••</button>
           </div>
           <div className="progress-copy">
-            <strong>项目进度</strong><span>38%</span>
+            <strong>项目进度</strong><span>100%</span>
             <div className="progress"><i /></div>
           </div>
           <nav className="stage-list">
             {stages.map((stage, index) => (
               <button
                 key={stage[1]}
-                className={`${activeStage === index ? "active" : ""} ${index < 4 ? "done" : ""}`}
+                className={`${activeStage === index ? "active" : ""} done`}
                 onClick={() => setActiveStage(index)}
               >
-                <span className="stage-num">{index < 4 ? "✓" : stage[0]}</span>
+                <span className="stage-num">✓</span>
                 <span className="stage-title">{stage[1]}<small>{stage[2]}</small></span>
                 {(index < 2 || (index === 4 && locked)) && <span className="lock">⌁</span>}
               </button>
