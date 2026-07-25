@@ -18,7 +18,7 @@ button { color:inherit; }
 .project-name .saved { color:#668277; margin-left:8px; }
 .top-actions { display:flex; gap:9px; align-items:center; }
 .top-actions button,.canvas-actions button { height:36px; border-radius:8px; padding:0 14px; border:1px solid var(--line); background:#fff; cursor:pointer; font-size:12px; }
-.top-actions .avatar { width:34px; padding:0; border-radius:50%; background:#e9d9cd; border:0; }
+.top-actions .provider { color:#53635d; background:#f4f6f5; border-color:#dde3df; }
 .top-actions .export { background:var(--green); color:#fff; border-color:var(--green); }
 .workspace { height:calc(100vh - 68px); display:grid; grid-template-columns:218px minmax(620px,1fr) 292px; }
 .stage-panel { background:#fff; border-right:1px solid var(--line); padding:22px 14px; overflow:auto; }
@@ -80,7 +80,9 @@ button { color:inherit; }
 .shot-label { position:absolute; z-index:2; top:8px; left:8px; color:#fff9; font-size:7px; letter-spacing:1px; }
 .selected-check { position:absolute; top:7px; right:7px; display:grid; place-items:center; width:18px; height:18px; background:#fff; color:var(--green); border-radius:50%; font-size:9px; }
 .visual-scene .moon { position:absolute; width:25px; height:25px; top:21px; right:25px; background:#f3d798; border-radius:50%; filter:blur(.3px); box-shadow:0 0 22px #f1cb7088; }
-.visual-scene .subject { position:absolute; width:19px; height:26px; bottom:15px; left:45%; border-radius:50% 50% 32% 32%; background:#c8865b; box-shadow:-7px -5px 0 -4px #c8865b,7px -5px 0 -4px #c8865b; }
+.visual-scene .subject { position:absolute; width:72px; height:11px; bottom:23px; left:31%; background:#9ca9a5; clip-path:polygon(0 50%,18% 0,82% 0,100% 52%,76% 100%,14% 100%); box-shadow:0 10px 12px #dce8e455; }
+.visual-scene .subject:before { content:""; position:absolute; width:22px; height:12px; left:28px; bottom:7px; background:#aeb8b5; clip-path:polygon(10% 100%,20% 35%,45% 35%,52% 0,64% 0,69% 35%,92% 48%,100% 100%); }
+.visual-scene .subject:after { content:""; position:absolute; width:58px; height:2px; left:-38px; top:10px; background:linear-gradient(90deg,transparent,#d9e9e580); transform:skewX(-25deg); }
 .visual-scene .ground { position:absolute; left:-10%; bottom:-23px; width:120%; height:45px; border-radius:50%; background:#0b171a66; border-top:1px solid #a9c2bd33; }
 .rain { position:absolute; width:1px; height:35px; background:#d9eeee44; transform:rotate(18deg); }
 .r1 { left:25%; top:18px; }.r2 { left:68%; top:31px; }.r3 { left:82%; top:8px; }

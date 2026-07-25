@@ -19,13 +19,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol = requestHeaders.get("x-forwarded-proto") ?? "https";
   const imageUrl = `${protocol}://${host}/og.png`;
   return {
-    title: "VORO · AI 视频工作台",
-    description: "把创意拆解成每一步都可编辑、可锁定、可回退的 AI 视频制作流程。",
+    title: "VORO · 通用视频制作工作台",
+    description: "不绑定任何模型，把内容拆解成每一步都可编辑、可锁定、可回退的视频制作流程。",
     icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
     openGraph: {
-      title: "VORO · AI 视频工作台",
+      title: "VORO · 通用视频制作工作台",
       description: "每一步，都可控。",
-      images: [{ url: imageUrl, width: 1748, height: 909, alt: "VORO AI 视频工作台" }],
+      images: [{ url: imageUrl, width: 1748, height: 909, alt: "VORO 通用视频制作工作台" }],
     },
     twitter: { card: "summary_large_image", images: [imageUrl] },
   };
