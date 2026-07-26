@@ -613,6 +613,26 @@
     .previz-gate b{font-size:14px;color:#eafbf0}
     .previz-gate .card-sub{font-size:12px;color:#b9c8be}
 
+    /* 全页面可读性底线：覆盖历史组件及运行时生成内容 */
+    .readable-type{
+      font-size:14px!important;
+      line-height:1.5!important;
+    }
+    .gate-notice,.impact-bar,.production-bar,.variant-banner,.generated-summary div{
+      line-height:1.6;
+    }
+    .gate-notice,.impact-bar{
+      min-height:48px;
+      padding:12px 14px;
+    }
+    .production-bar{min-height:72px}
+    .nav-item{min-height:54px}
+    .badge,.artifact-state,.artifact-action,.nav-badge{
+      min-height:26px;
+      display:inline-flex;
+      align-items:center;
+    }
+
     @media(max-width:1100px){.sentence-row{grid-template-columns:70px 75px minmax(220px,1fr) 100px}.sentence-row>*:nth-child(5),.sentence-row>*:nth-child(6){grid-column:auto}.mixer{grid-template-columns:repeat(3,1fr)}}
     @media(max-width:900px){.source-brief-body,.final-workspace,.variant-banner,.rough-editor,.qa-layout,.asset-workspace,.previz-workspace{grid-template-columns:1fr}.brief-fields{grid-template-columns:1fr}.variant-switcher{grid-template-columns:1fr}.link-scope{margin-left:0}.ai-compare,.asset-records,.coverage-grid,.lock-matrix,.candidate-strip{grid-template-columns:1fr}.brief-matrix,.archive-grid{grid-template-columns:repeat(2,1fr)}.finish-controls{grid-template-columns:repeat(2,1fr)}.sentence-row{grid-template-columns:1fr}.mixer{grid-template-columns:repeat(2,1fr)}}
   </style>
@@ -2400,6 +2420,20 @@
     m8:'V6已重新完成：全部素材统一为1280×720、24fps、H.264；已完成响度限制、旁白清晰度和音画同步处理。',
     m9:'V6已重新完成：90秒时长、全动态视频、解码、黑帧、结构连续性、动作因果、声音和本地链接检查全部通过。'
   };
+  const MIN_READABLE_FONT = 14;
+  const enforceReadableType = (scope=document) => {
+    if (!scope.querySelectorAll) return;
+    scope.querySelectorAll('*').forEach(el => {
+      if (el.matches('script,style,svg,path,video,audio,img,source,canvas')) return;
+      const isControl = el.matches('input,textarea,select,button,option');
+      const isLeafText = !el.children.length && el.textContent.trim();
+      if (!isControl && !isLeafText) return;
+      const size = Number.parseFloat(getComputedStyle(el).fontSize);
+      if (Number.isFinite(size) && size < MIN_READABLE_FONT) {
+        el.classList.add('readable-type');
+      }
+    });
+  };
   const syncV6Assets = () => {
     document.querySelectorAll('video').forEach(el => {
       const isLongPreview = el.matches('.final-player,.final-workspace video,.previz-player video');
@@ -2459,6 +2493,7 @@
         head.insertAdjacentHTML('afterend','<div class="gate-notice v6-run-result" style="margin:0 0 14px;border-color:#2f9e62;background:rgba(32,160,90,.08)"><b style="color:#55d68b">✓ 本步骤真实成果 · V6</b><span style="margin-left:10px">'+text+'</span></div>');
       }
     });
+    enforceReadableType();
   };
   syncV6Assets();
   new MutationObserver(syncV6Assets).observe(document.body,{childList:true,subtree:true});
