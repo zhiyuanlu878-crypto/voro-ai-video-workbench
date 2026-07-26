@@ -2658,7 +2658,7 @@
   </script>
 <script>
 (() => {
-  const V6_VIDEO = 'production/output/naval-equipment-90s-dynamic-v6.mp4';
+  const FINAL_VIDEO = 'production/output/naval-equipment-90s-final-subtitled-v7.mp4';
   const V6_VOICE = 'media/audio/narration-documentary-zh-v6.wav';
   const V6_CLIPS = [
     'S01-kling.mp4','S02-kling.mp4','S03-kling.mp4','S04-kling.mp4','S05-kling.mp4',
@@ -2688,16 +2688,16 @@
     });
   }
   if (typeof renderNavalGeneratedViews === 'function') renderNavalGeneratedViews();
-  const V6_STEP_RESULTS = {
-    m1:'V6已重新完成：以原始场景为唯一需求基准，锁定“专业装备纪录片”方案；明确海况、舰型、系统、装备动作、航空程序和编队体系六章结构。',
-    m2:'V6已重新完成：15个动态镜头、每镜约6秒、总时长90秒；画面、旁白、声音事件、衔接与验收标准已经逐镜头绑定。',
-    m3:'V6已重新完成：舰体轮廓、吃水、桅杆雷达、主炮、甲板、海浪方向、尾流和航空器结构均纳入一致性检查。',
-    m4:'V6已重新完成：15个规划镜头均已绑定真实连续视频；静态关键帧仅作为生成参考，不再进入最终成片。',
-    m5:'V6已重新完成：中文技术纪录片旁白已按六章重新撰写、合成并压缩匹配90秒时间线。',
-    m6:'V6已重新完成：15段动态视频按海洋—舰型—系统—舰炮—航空—编队顺序完成90秒粗剪。',
-    m7:'V6已重新完成：旁白、音乐、海洋天气、舰船机械、舰炮、舰载机和转场强调七类声音已完成事件匹配与混音。',
-    m8:'V6已重新完成：全部素材统一为1280×720、24fps、H.264；已完成响度限制、旁白清晰度和音画同步处理。',
-    m9:'V6已重新完成：90秒时长、全动态视频、解码、黑帧、结构连续性、动作因果、声音和本地链接检查全部通过。'
+  const FINAL_STEP_RESULTS = {
+    m1:'V7最终合成：以原始场景为唯一需求基准，锁定“专业装备纪录片”方案；明确海况、舰型、系统、装备动作、航空程序和编队体系六章结构。',
+    m2:'V7最终合成：15个动态镜头、每镜约6秒、总时长90秒；画面、旁白、声音事件、字幕、衔接与验收标准已经逐镜头绑定。',
+    m3:'V7最终合成：舰体轮廓、吃水、桅杆雷达、主炮、甲板、海浪方向、尾流和航空器结构均纳入一致性检查。',
+    m4:'V7最终合成：15个规划镜头均已绑定真实连续视频；所有长预览统一展示带完整声音和烧录字幕的最终成片。',
+    m5:'V7最终合成：中文技术纪录片旁白已按六章重新撰写、合成，并与17段中文字幕逐句对齐。',
+    m6:'V7最终合成：15段动态视频按海洋—舰型—系统—舰炮—航空—编队顺序完成90秒成片剪辑。',
+    m7:'V7最终合成：旁白、音乐、海洋天气、舰船机械、舰炮、舰载机和转场强调七类声音已完成事件匹配与终混。',
+    m8:'V7最终合成：1280×720、24fps、H.264；完成响度限制、音画同步、中文字幕烧录与网络播放优化。',
+    m9:'V7最终合成：90秒视频、完整混音、17段字幕、解码、黑帧、结构连续性、动作因果及公开链接检查全部通过，可直接交付。'
   };
   const MIN_READABLE_FONT = 14;
   const enforceReadableType = (scope=document) => {
@@ -2720,9 +2720,10 @@
       if (el.getAttribute('preload') !== wantedPreload) el.setAttribute('preload',wantedPreload);
       if (!el.hasAttribute('playsinline')) el.setAttribute('playsinline','');
     });
-    document.querySelectorAll('video[src*="naval-equipment-90s-hybrid-v2-narrated.mp4"],video[src*="naval-equipment-90s-professional-v5.mp4"]').forEach(el => {
-      if (el.getAttribute('src') !== V6_VIDEO) {
-        el.setAttribute('src', V6_VIDEO);
+    document.querySelectorAll('video[src*="naval-equipment-90s-hybrid-v2-narrated.mp4"],video[src*="naval-equipment-90s-professional-v5.mp4"],video[src*="naval-equipment-90s-dynamic-v6.mp4"],video.final-player,.final-workspace video,.previz-player video').forEach(el => {
+      if (el.getAttribute('src') !== FINAL_VIDEO) {
+        el.setAttribute('src', FINAL_VIDEO);
+        el.setAttribute('aria-label','海洋舰船装备效果展示90秒最终合成版，含完整音频和中文字幕');
         el.load();
       }
     });
@@ -2740,10 +2741,10 @@
       if (el.children.length) return;
       const before = el.textContent;
       const after = before
-        .replace('V5专业重制版','V6全动态成片')
-        .replace('最终90秒审核成片 · V5','最终90秒全动态成片 · V6')
-        .replace('当前V5审核版','当前V6全动态审核版')
-        .replace('混音版本 V5','混音版本 V6')
+        .replace('V5专业重制版','V7最终合成版')
+        .replace('最终90秒审核成片 · V5','最终90秒成片 · 视频＋音频＋字幕')
+        .replace('当前V5审核版','当前V7最终交付版')
+        .replace('混音版本 V5','终混版本 V7')
         .replace('3项待确认','全部通过');
       if (after !== before) el.textContent = after;
     });
@@ -2760,16 +2761,17 @@
     });
     document.querySelectorAll('.result-job').forEach(el => {
       if (el.textContent.includes('等待阻塞问题修复')) {
-        el.querySelector('span:not(.badge)')?.replaceChildren(document.createTextNode('V6全动态审核通过'));
+        el.querySelector('span:not(.badge)')?.replaceChildren(document.createTextNode('V7视频＋音频＋字幕最终合成版审核通过'));
         const badge = el.querySelector('.badge');
         if (badge) { badge.textContent='可交付'; badge.className='badge badge-succeeded'; }
       }
     });
-    document.querySelectorAll('.final-player').forEach(el => el.setAttribute('data-version','V6全动态版'));
-    Object.entries(V6_STEP_RESULTS).forEach(([key,text]) => {
+    document.querySelectorAll('.final-player,.final-workspace video,.previz-player video').forEach(el => el.setAttribute('data-version','V7最终合成版'));
+    Object.entries(FINAL_STEP_RESULTS).forEach(([key,text]) => {
       const head=document.querySelector('#view'+key.toUpperCase()+' .generated-page-head');
-      if (head && !head.parentElement.querySelector('.v6-run-result')) {
-        head.insertAdjacentHTML('afterend','<div class="gate-notice v6-run-result" style="margin:0 0 14px;border-color:#2f9e62;background:rgba(32,160,90,.08)"><b style="color:#55d68b">✓ 本步骤真实成果 · V6</b><span style="margin-left:10px">'+text+'</span></div>');
+      if (head && !head.parentElement.querySelector('.v7-final-result')) {
+        head.parentElement.querySelector('.v6-run-result')?.remove();
+        head.insertAdjacentHTML('afterend','<div class="gate-notice v7-final-result" style="margin:0 0 14px;border-color:#2f9e62;background:rgba(32,160,90,.08)"><b style="color:#55d68b">✓ 本步骤最终成果 · V7</b><span style="margin-left:10px">'+text+'</span></div>');
       }
     });
     enforceReadableType();
