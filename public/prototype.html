@@ -541,6 +541,78 @@
     .archive-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.archive-item{padding:10px;border:1px solid var(--glass-border);border-radius:8px;background:var(--bg-2)}.archive-item b,.archive-item span{display:block}.archive-item b{font-size:9px}.archive-item span{margin-top:4px;color:var(--text-3);font-size:8px}
     .final-workspace{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,.7fr);gap:14px}.final-workspace video{width:100%;max-height:390px;background:#05070a;border-radius:8px}
     .result-job{display:flex;align-items:center;gap:10px;padding:10px;border-bottom:1px solid var(--glass-border)}.result-job:last-child{border-bottom:0}.result-job b{font-size:10px}.result-job span{font-size:9px;color:var(--text-3)}.result-job .btn{margin-left:auto}
+    /* 可读性优化：整体字号提升，并强化深色界面中的表单与动态预演字段 */
+    body{font-size:16px;line-height:1.65}
+    input,textarea,select{font-size:15px}
+    .logo-title{font-size:17px}.logo-sub{font-size:13px}
+    .sidebar-group-label{font-size:12px}
+    .nav-item{font-size:15px;padding-top:11px;padding-bottom:11px}
+    .nav-item .nav-idx,.nav-badge,.org-role,.user-role{font-size:12px}
+    .org-name,.breadcrumb,.user-name{font-size:14px}
+    .page-title{font-size:26px}.page-desc{font-size:15px;line-height:1.6}
+    .btn{font-size:14px}.btn-sm{font-size:13px}.btn-xs{font-size:12px}
+    .card-header h3,.generated-card-head h3{font-size:16px}
+    .card-sub,.form-label,.form-hint,.demo-banner{font-size:13px}
+    textarea,.input,.select{font-size:14px}
+    .generated-copy{font-size:14px;line-height:1.8}
+    .generated-list li,.generated-table{font-size:13px}
+    .generated-table th,.generated-table td{padding:11px 12px}
+    .artifact-state,.artifact-action{font-size:12px}
+    .artifact-action{padding:6px 10px}
+    .variant-current b,.variant-banner b,.variant-option b{font-size:13px}
+    .variant-current span,.variant-banner span,.variant-option span,.linked-strategy>span:first-child{font-size:12px}
+    .linked-strategy em,.output-tags span{font-size:11px}
+    .brief-field b,.coverage-item b,.lock-item b{font-size:13px}
+    .brief-field span,.coverage-item span,.lock-item span{font-size:12px}
+
+    /* 所有工作台字段统一为高对比深色，避免出现看不清的白色输入框 */
+    input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+    textarea,select{
+      color:#f2f6ff!important;
+      background-color:#171d27!important;
+      border:1px solid #465269!important;
+      border-radius:7px;
+    }
+    input:not([type="range"]):not([type="checkbox"]):not([type="radio"]){
+      min-height:38px;
+      padding:8px 11px;
+    }
+    input::placeholder,textarea::placeholder{color:#9ba9bd!important;opacity:1}
+    input:disabled,textarea:disabled,select:disabled{color:#b9c4d4!important;background:#202633!important;opacity:1}
+    select option{color:#f2f6ff;background:#171d27}
+
+    /* 动态预演：字段标题、说明、镜头块与确认区提高辨识度 */
+    .previz-workspace{gap:16px}
+    .previz-side{gap:10px}
+    .previz-check{
+      min-height:76px;
+      padding:13px 14px;
+      background:#151c27;
+      border-color:#3b4659;
+      box-shadow:inset 3px 0 0 rgba(76,141,255,.58);
+    }
+    .previz-check b{font-size:14px;color:#f4f7fc}
+    .previz-check span{margin-top:7px;font-size:13px;line-height:1.55;color:#bec9d9}
+    .edit-timeline{background:#0d121a;border-color:#3b4659}
+    .edit-track{grid-template-columns:88px 1fr;gap:12px;padding:11px 12px}
+    .edit-track-label{font-size:12px;font-weight:600;color:#d5deeb}
+    .edit-lane{min-height:40px;gap:5px}
+    .edit-clip{
+      min-width:48px;
+      min-height:38px;
+      padding:8px 7px;
+      font-size:11px;
+      font-weight:600;
+      color:#eef5ff;
+      background:#1c3c69;
+      border-color:#4b7fc4;
+    }
+    .edit-clip.audio{color:#e9fff0;background:#17472d;border-color:#3a8658}
+    .edit-clip.music{color:#f8edff;background:#4b2561;border-color:#8751a5}
+    .previz-gate{padding:14px;border-color:rgba(63,185,80,.42);background:rgba(63,185,80,.1)}
+    .previz-gate b{font-size:14px;color:#eafbf0}
+    .previz-gate .card-sub{font-size:12px;color:#b9c8be}
+
     @media(max-width:1100px){.sentence-row{grid-template-columns:70px 75px minmax(220px,1fr) 100px}.sentence-row>*:nth-child(5),.sentence-row>*:nth-child(6){grid-column:auto}.mixer{grid-template-columns:repeat(3,1fr)}}
     @media(max-width:900px){.source-brief-body,.final-workspace,.variant-banner,.rough-editor,.qa-layout,.asset-workspace,.previz-workspace{grid-template-columns:1fr}.brief-fields{grid-template-columns:1fr}.variant-switcher{grid-template-columns:1fr}.link-scope{margin-left:0}.ai-compare,.asset-records,.coverage-grid,.lock-matrix,.candidate-strip{grid-template-columns:1fr}.brief-matrix,.archive-grid{grid-template-columns:repeat(2,1fr)}.finish-controls{grid-template-columns:repeat(2,1fr)}.sentence-row{grid-template-columns:1fr}.mixer{grid-template-columns:repeat(2,1fr)}}
   </style>
