@@ -13,7 +13,7 @@ export default function Home() {
       }}
     >
       <iframe
-        title="AI 视频制作工作台企业级原型"
+        title="VORO AI 视频制作工作台企业级原型"
         src="/prototype.html"
         style={{
           display: "block",

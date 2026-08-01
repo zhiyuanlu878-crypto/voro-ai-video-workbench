@@ -1,0 +1,164 @@
+{
+  "schema": "voro.delivery-manifest/1.1",
+  "document_version": "V8",
+  "created_at": "2026-08-01T18:50:00+08:00",
+  "project": {
+    "name": "海洋舰船装备效果演示",
+    "source_media_version": "V8",
+    "target_duration_seconds": 90,
+    "target_ratio": "16:9",
+    "current_allowed_use": "internal_review"
+  },
+  "package_status": "internal_review_package_ready",
+  "release_decision": "do_not_deliver_externally",
+  "decision_reason": "V8已完成剪辑、音画、字幕和技术优化，但雪天、完整舰载机启停、双编队对抗、具体舰型校验及商用授权仍未关闭。",
+  "version_lineage": [
+    {
+      "stage": "source_clips",
+      "version": "15 generated clips",
+      "note": "公开参考图驱动的生成视频片段"
+    },
+    {
+      "stage": "subtitled_composite",
+      "version": "V7",
+      "note": "原90秒统一6秒镜头合成版"
+    },
+    {
+      "stage": "editorial_remaster",
+      "version": "V8",
+      "note": "22段可变时长剪辑，主炮/水柱/舰载航空重新对齐，加入AI视觉示意披露"
+    }
+  ],
+  "technical_validation": {
+    "duration_seconds": 90.0,
+    "resolution": "1280x720",
+    "frame_rate": 24,
+    "video_codec": "H.264 High",
+    "audio_codec": "AAC LC",
+    "audio_sample_rate_hz": 48000,
+    "audio_channels": 2,
+    "integrated_loudness_lufs": -16.5,
+    "true_peak_dbtp": -1.0,
+    "loudness_range_lu": 6.0,
+    "full_decode": "passed",
+    "web_fast_start": true
+  },
+  "quality_gates": [
+    {
+      "id": "GATE-TECH",
+      "name": "基础技术质量",
+      "status": "passed",
+      "reason": "V8母版和网页播放版均已完整编码；母版完成完整解码和响度扫描。"
+    },
+    {
+      "id": "GATE-REQ",
+      "name": "原始需求覆盖",
+      "status": "blocked",
+      "source": "requirement-coverage-v8.json",
+      "reason": "雪天、完整舰载机启停及双编队对抗仍未达到可核验验收标准。"
+    },
+    {
+      "id": "GATE-FACT",
+      "name": "具体舰型与三维结构",
+      "status": "blocked",
+      "reason": "现有生成素材不足以严谨标注具体真实型号，三维结构仍需授权模型或专业顾问校验。"
+    },
+    {
+      "id": "GATE-RIGHTS",
+      "name": "商用授权与来源",
+      "status": "blocked",
+      "source": "rights-manifest-v8.json",
+      "reason": "模型、参考图、配音、音乐和音效的外部使用证明尚未全部归档。"
+    },
+    {
+      "id": "GATE-APPROVAL",
+      "name": "客户审批",
+      "status": "pending",
+      "reason": "客户审批必须绑定最终文件校验值，且发起人与审核人职责分离。"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "DEL-001",
+      "role": "internal_review_master",
+      "path": "naval-equipment-90s-final-v8.mp4",
+      "size_bytes": 50978263,
+      "sha256": "F48530DBEF1B933182501D0D46F2993CF265AAADECC7F1F1DFD795F5F40433EF",
+      "status": "ready"
+    },
+    {
+      "id": "DEL-002",
+      "role": "web_playback_proxy",
+      "path": "naval-equipment-90s-final-v8-web.mp4",
+      "size_bytes": 22407383,
+      "sha256": "4C69F6492E6A25C515EEC1558EBA07B1BBE664214F45AE14FB38B9CB66478963",
+      "status": "ready"
+    },
+    {
+      "id": "DEL-003",
+      "role": "subtitle_srt",
+      "path": "naval-equipment-90s-final-v8.srt",
+      "size_bytes": 1770,
+      "sha256": "82C9316CB77FC38441F199907EC6293F32772FC1430E4E8557BD40119E773D11",
+      "status": "ready"
+    },
+    {
+      "id": "DEL-004",
+      "role": "narration_stem",
+      "path": "../../media/audio/narration-documentary-zh-v7-final.wav",
+      "size_bytes": 8640078,
+      "status": "ready"
+    },
+    {
+      "id": "DEL-005",
+      "role": "music_stem",
+      "path": "../../media/audio/music-ocean-documentary.wav",
+      "size_bytes": 4320044,
+      "status": "ready"
+    },
+    {
+      "id": "DEL-006",
+      "role": "sfx_stems",
+      "paths": [
+        "../../media/audio/sfx-ocean-weather.wav",
+        "../../media/audio/sfx-ship-mechanical.wav",
+        "../../media/audio/sfx-cannon-fire.wav",
+        "../../media/audio/sfx-carrier-aircraft.wav",
+        "../../media/audio/sfx-transition-pack.wav"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "DEL-007",
+      "role": "requirement_qc_rights_reports",
+      "paths": [
+        "requirement-coverage-v8.json",
+        "qc-report-v8.json",
+        "rights-manifest-v8.json"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "DEL-008",
+      "role": "internal_review_zip",
+      "path": "voro-naval-delivery-v8.zip",
+      "status": "ready"
+    }
+  ],
+  "open_blockers": [
+    "补生成可核验雪天镜头",
+    "补齐舰载机启动与停止动作链",
+    "补齐两支可区分虚构编队的非接触对抗关系",
+    "由专业顾问或授权三维模型校验具体舰型与外部结构",
+    "归档所有生成平台和素材商用授权",
+    "客户审批绑定最终母版SHA-256"
+  ],
+  "signoff": {
+    "producer": "ready_for_internal_review",
+    "content_reviewer": null,
+    "technical_reviewer": "technical_pass",
+    "rights_reviewer": null,
+    "client_approver": null,
+    "external_release_status": "blocked"
+  }
+}

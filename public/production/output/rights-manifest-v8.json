@@ -1,0 +1,301 @@
+{
+  "schema": "voro.rights-manifest/1.0",
+  "document_version": "V8",
+  "created_at": "2026-08-01T00:00:00+08:00",
+  "project": "海洋舰船装备效果演示",
+  "intended_release": "external_client_demo",
+  "overall_rights_status": "blocked",
+  "allowed_current_use": "internal_review_only",
+  "release_reason": "所有生成视频尚无可归档的无水印外部使用许可证明；部分参考图需要补充准确许可和署名，语音、音乐与音效也缺少商业使用证明。",
+  "status_definitions": {
+    "cleared": "已取得并归档满足本次用途的许可证明",
+    "provisional": "来源显示可能允许使用，但许可文本、署名或用途证明未归档",
+    "unconfirmed": "无法证明当前用途被授权",
+    "blocked": "不得进入外部交付"
+  },
+  "required_evidence_fields": [
+    "provider_or_owner",
+    "source_url_or_account",
+    "license_name_and_version",
+    "commercial_or_external_use_permission",
+    "watermark_removal_permission",
+    "attribution_requirement",
+    "proof_archive_path",
+    "reviewer",
+    "reviewed_at"
+  ],
+  "generated_video_assets": [
+    {
+      "id": "VID-001",
+      "path": "public/production/generated_clips/S01-kling.mp4",
+      "timeline": "00:00-00:06",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-002",
+      "path": "public/production/generated_clips/S02-kling.mp4",
+      "timeline": "00:06-00:12",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-003",
+      "path": "public/production/generated_clips/S03-kling.mp4",
+      "timeline": "00:12-00:18",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-004",
+      "path": "public/production/generated_clips/S04-kling.mp4",
+      "timeline": "00:18-00:24",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-005",
+      "path": "public/production/generated_clips/S05-kling.mp4",
+      "timeline": "00:24-00:30",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-006",
+      "path": "public/production/generated_clips/S06-kling1.mp4",
+      "timeline": "00:30-00:36",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-007",
+      "path": "public/production/generated_clips/S08-kling.mp4",
+      "timeline": "00:36-00:42",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-008",
+      "path": "public/production/generated_clips/S07-kling.mp4",
+      "timeline": "00:42-00:48",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-009",
+      "path": "public/production/generated_clips/S06-kling2.mp4",
+      "timeline": "00:48-00:54",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-010",
+      "path": "public/production/generated_clips/S09-kling4.mp4",
+      "timeline": "00:54-01:00",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-011",
+      "path": "public/production/generated_clips/S09-kling.mp4",
+      "timeline": "01:00-01:06",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-012",
+      "path": "public/production/generated_clips/S09-kling1.mp4",
+      "timeline": "01:06-01:12",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-013",
+      "path": "public/production/generated_clips/S10-svd.mp4",
+      "timeline": "01:12-01:18",
+      "provider": "Stable Video Diffusion public inference workflow",
+      "generation_record": "公共推理流程演示记录，模型版本、托管服务条款和输出使用条款未归档",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-014",
+      "path": "public/production/generated_clips/S11-kling.mp4",
+      "timeline": "01:18-01:24",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    },
+    {
+      "id": "VID-015",
+      "path": "public/production/generated_clips/S12-kling.mp4",
+      "timeline": "01:24-01:30",
+      "provider": "Kling AI / 可灵",
+      "generation_record": "演示记录，未保存账户、任务ID和条款快照",
+      "watermark_present": true,
+      "rights_status": "unconfirmed",
+      "external_use": "blocked"
+    }
+  ],
+  "reference_assets": [
+    {
+      "id": "REF-001",
+      "path": "production/references/images/type-055-nanchang.jpg",
+      "purpose": "055型舰体轮廓、上层建筑和编队尺度参考",
+      "source_url": "https://commons.wikimedia.org/wiki/File:PLANS_Nanchang_(DDG-101)_20210326.jpg",
+      "provisional_license_note": "日本防卫省资料，经Wikimedia Commons收录；以来源页面标注为准",
+      "rights_status": "unconfirmed",
+      "required_action": "归档具体许可文本、作者、署名格式和下载日期；确认仅作参考还是进入生成输入。"
+    },
+    {
+      "id": "REF-002",
+      "path": "production/references/images/type-052d-zhanjiang.jpg",
+      "purpose": "052D舰体、雷达和甲板布局参考",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Type-52D_destroyer_Zhanjiang_(165)_in_Langkawi.jpg",
+      "provisional_license_note": "Wikimedia Commons，Creative Commons具体条款待归档",
+      "rights_status": "provisional",
+      "required_action": "归档许可版本、作者和署名要求。"
+    },
+    {
+      "id": "REF-003",
+      "path": "production/references/images/shandong-carrier.jpg",
+      "purpose": "山东舰外形、滑跃甲板和舰岛比例参考",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Chinese_aircraft_carrier_Shandong_in_2019.jpg",
+      "provisional_license_note": "Wikimedia Commons具体署名与许可待归档",
+      "rights_status": "unconfirmed",
+      "required_action": "归档许可和署名；确认外部演示中模型输出的参考使用合规性。"
+    },
+    {
+      "id": "REF-004",
+      "path": "production/references/images/arleigh-burke-underway.jpg",
+      "purpose": "伯克级航行姿态、尾流和海面尺度参考",
+      "source_url": "https://www.dvidshub.net/image/9520985/uss-arleigh-burke-sail-underway",
+      "provisional_license_note": "美国海军/DVIDS，可能为公有领域，但需遵守DVIDS使用说明",
+      "rights_status": "provisional",
+      "required_action": "归档DVIDS页面、作者、发布日期和使用说明。"
+    },
+    {
+      "id": "REF-005",
+      "path": "production/references/images/ford-flight-operations.jpg",
+      "purpose": "舰载机甲板作业、起飞构图和灯光参考",
+      "source_url": "https://commons.wikimedia.org/wiki/File:USS_Gerald_R_Ford_(CVN_78)_Flight_Operations_(8631340).jpg",
+      "provisional_license_note": "美国联邦政府作品，预期公有领域",
+      "rights_status": "provisional",
+      "required_action": "归档原始来源、作者/单位和公有领域声明。"
+    },
+    {
+      "id": "REF-006",
+      "path": "production/references/images/rough-sea-noaa.jpg",
+      "purpose": "高海况浪形、飞沫和灰天光参考",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NOAAS_Miller_Freeman_(R_223)_heavy_seas.jpg",
+      "provisional_license_note": "NOAA/美国联邦政府作品，预期公有领域",
+      "rights_status": "provisional",
+      "required_action": "归档原始来源和公有领域声明。"
+    }
+  ],
+  "audio_and_text_assets": [
+    {
+      "id": "AUD-001",
+      "path": "public/media/audio/narration-documentary-zh-v7-final.wav",
+      "type": "synthesized_voice",
+      "source": "Microsoft Huihui Desktop via Windows System.Speech production script",
+      "rights_status": "unconfirmed",
+      "external_use": "blocked",
+      "required_action": "确认该语音在本次客户演示和外部发布中的许可，或换用有明确商业授权的语音模型。"
+    },
+    {
+      "id": "AUD-002",
+      "path": "public/media/audio/music-ocean-documentary.wav",
+      "type": "music",
+      "source": "internal generated asset; generator and license proof not archived",
+      "rights_status": "unconfirmed",
+      "external_use": "blocked",
+      "required_action": "归档生成方式、模型/素材来源和商业许可，或替换为已授权配乐。"
+    },
+    {
+      "id": "AUD-003",
+      "paths": [
+        "public/media/audio/sfx-ocean-weather.wav",
+        "public/media/audio/sfx-ship-mechanical.wav",
+        "public/media/audio/sfx-cannon-fire.wav",
+        "public/media/audio/sfx-carrier-aircraft.wav",
+        "public/media/audio/sfx-transition-pack.wav"
+      ],
+      "type": "sound_effects",
+      "source": "internal generated assets; generator and license proof not archived",
+      "rights_status": "unconfirmed",
+      "external_use": "blocked",
+      "required_action": "逐文件归档来源和外部使用许可。"
+    },
+    {
+      "id": "TXT-001",
+      "path": "public/production/output/naval-equipment-90s-final.srt",
+      "type": "subtitle_and_narration_script",
+      "source": "project-authored Chinese narration",
+      "rights_status": "cleared_for_internal_demo",
+      "external_use": "pending_voice_and_source_clearance",
+      "required_action": "内容负责人确认最终文案，并随语音和画面素材一起完成外部使用审核。"
+    }
+  ],
+  "derived_assets": [
+    {
+      "id": "DER-001",
+      "path": "public/production/output/naval-equipment-90s-final-subtitled-v7.mp4",
+      "type": "final_composite",
+      "rights_status": "blocked",
+      "reason": "继承15个视频片段、语音、音乐、音效和参考素材的未确认权利状态。"
+    }
+  ],
+  "blocking_actions": [
+    "取得可灵和SVD输出用于外部客户演示的明确许可及无水印版本",
+    "为所有参考图归档许可版本、作者、署名和来源快照",
+    "确认Microsoft Huihui语音的外部使用许可或更换语音",
+    "确认音乐和全部音效的生成来源及商业使用许可",
+    "由版权与合规负责人完成逐项签字"
+  ],
+  "signoff": {
+    "rights_owner": null,
+    "reviewer": null,
+    "status": "pending",
+    "reviewed_at": null
+  }
+}
