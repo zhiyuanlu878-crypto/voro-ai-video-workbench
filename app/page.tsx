@@ -5,7 +5,8 @@ export default function Home() {
     <main
       style={{
         width: "100%",
-        height: "100vh",
+        height: "100dvh",
+        minHeight: "100svh",
         margin: 0,
         overflow: "hidden",
         background: "#0b0e13",
@@ -18,6 +19,7 @@ export default function Home() {
           display: "block",
           width: "100%",
           height: "100%",
+          minHeight: 0,
           border: 0,
         }}
         allow="autoplay; fullscreen; picture-in-picture"

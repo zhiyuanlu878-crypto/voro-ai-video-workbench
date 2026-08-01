@@ -78,3 +78,11 @@ test("the embedded application script is syntactically valid", async () => {
   assert.ok(match, "voroApp script is present");
   assert.doesNotThrow(() => new Function(match[1]));
 });
+
+test("keeps desktop and mobile workbench pages scrollable", async () => {
+  const html = await readFile(prototypeUrl, "utf8");
+  assert.match(html, /\.main\{height:100%;min-width:0;min-height:0;overflow:hidden/);
+  assert.match(html, /\.content\{flex:1 1 auto;min-height:0;overflow-y:auto/);
+  assert.match(html, /\.nav\{[^}]*overflow-y:auto[^}]*min-height:0/);
+  assert.match(html, /@media\(max-width:850px\)[\s\S]*?\.content\{min-height:0;overflow:visible/);
+});
