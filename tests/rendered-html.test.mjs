@@ -55,7 +55,8 @@ test("starts from a blank project and preserves the click-driven production chai
 test("discloses replay versus live generation and never labels simulation as connected", async () => {
   const html = await readFile(prototypeUrl, "utf8");
   assert.match(html, /演示回放模式：使用已归档的确定性成果/);
-  assert.match(html, /实时运行模式：每次生成会调用已配置服务/);
+  assert.match(html, /实时运行配置：本单文件原型只保存模型与路由配置/);
+  assert.match(html, /renderAdapterReady:false/);
   assert.match(html, /simulation:'演示模拟'/);
   assert.match(html, /mode==='live'&&!p\?\.generation\?\.providerReady/);
   assert.match(html, /m\.connectionType==='simulation'\?'simulation'/);
@@ -129,15 +130,33 @@ test("keeps timeline saving and render readiness consistent and explainable", as
   assert.match(html, /data-testid="render-review-button"/);
   assert.match(html, /key:'duration'[\s\S]*?blocking:false/);
   assert.match(html, /const readiness=editRenderReadiness\(p\);if\(!readiness\.ready\)/);
-  assert.match(html, /rendering\|\|tracksGenerating\|\|!t\.clips\.length\|\|!t\.dirty/);
+  assert.match(html, /rendering\|\|tracksGenerating\|\|!t\.clips\.length\|\|!t\.dirty&&readiness\.fingerprintMatches/);
   assert.match(html, /previousStatus==='ready'\?'ready':'failed'/);
   assert.match(html, /function reflowTimeline\(p\)/);
   assert.match(html, /function markTimelineTracksStale\(p\)/);
   assert.match(html, /function timelineStructureFingerprint\(p\)/);
+  assert.match(html, /function timelineFingerprint\(p\)/);
+  assert.match(html, /function replayFixtureCompatibility\(p\)/);
+  assert.match(html, /function reviewMatchesSavedTimeline\(p\)/);
+  assert.match(html, /const NAVAL_V8_FIXTURE=Object\.freeze/);
+  assert.match(html, /savedFingerprint/);
+  assert.match(html, /versionSequence/);
+  assert.match(html, /sourceMismatches/);
   assert.match(html, /function reflectTimelineDraftUi\(p\)/);
   assert.match(html, /时间线 V\$\{p\.timeline\.savedVersion\} 已保存/);
   assert.match(html, /function interruptPersistedJob\(job\)[\s\S]*?job\.status='interrupted'/);
   assert.match(html, /j\?\.status==='interrupted'/);
+  assert.match(html, /reviewCurrent=reviewMatchesSavedTimeline\(p\)/);
+  assert.match(html, /archiveCurrentReview\(p,`上游/);
+  const autoSequence = html.match(/if\(a==='auto-sequence'\)\{[^\n]+/);
+  assert.ok(autoSequence, "auto-sequence handler exists");
+  assert.doesNotMatch(autoSequence[0], /savedVersion=0/);
+  assert.match(autoSequence[0], /markTimelineTracksStale\(p\)/);
+  assert.match(html, /shots:shotsPageV8,edit:editPage,delivery:deliveryPageV8/);
+  const fixIssue = html.match(/if\(a==='fix-issue'\)\{[^\n]+/);
+  assert.ok(fixIssue, "fix-issue handler exists");
+  assert.doesNotMatch(fixIssue[0], /reviewVersion=/);
+  assert.match(fixIssue[0], /fixCandidate=/);
   assert.doesNotMatch(html, /p\.duration&&Math\.abs\(total-Number\(p\.duration\)\)>\.2/);
 });
 
