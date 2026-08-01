@@ -1,0 +1,270 @@
+{
+  "schema": "voro.qc-report/1.0",
+  "document_version": "V8",
+  "created_at": "2026-08-01T00:00:00+08:00",
+  "audited_artifact": {
+    "path": "public/production/output/naval-equipment-90s-final-subtitled-v7.mp4",
+    "version": "V7",
+    "sha256": "fb7605d5dcc92ba4a32ad1fd298b163e9f69b2daa45c9a2dd25664597184171e",
+    "duration_seconds": 90,
+    "resolution": "1280x720",
+    "frame_rate": 24,
+    "video_codec": "H.264",
+    "audio_codec": "AAC"
+  },
+  "review_method": [
+    "对15个入选视频片段的多帧接触表进行视觉审核",
+    "按00:00至01:30时间线核对镜头、旁白、字幕和动作音效",
+    "核对V6/V7制作脚本、片段时长和最终合成逻辑",
+    "核对最终SRT的17条字幕和结束时间01:29.400",
+    "核对素材来源和现有授权记录"
+  ],
+  "overall_result": "blocked",
+  "release_scope": "internal_review_only",
+  "summary": {
+    "check_count": 15,
+    "passed": 2,
+    "blocking_open": 12,
+    "major_open": 1,
+    "minor_open": 0,
+    "fixed": 0,
+    "release_blocked": true
+  },
+  "supersedes_previous_prototype_qc": {
+    "previous_claim": "32项通过、3项已修复、0项阻断",
+    "status": "invalidated",
+    "reason": "原型中的质检结果是固定演示数据，没有对V7实际媒体执行证据化检测。"
+  },
+  "delivery_targets": {
+    "minimum_resolution": "1920x1080",
+    "watermark": "none",
+    "provisional_integrated_loudness": "-16 LUFS +/- 1 LU for web/client playback; final target must be confirmed",
+    "true_peak_max": "-1 dBTP",
+    "subtitle_safe_area": "within 90% title-safe area",
+    "rights_status": "all incorporated assets cleared for intended external use"
+  },
+  "checks": [
+    {
+      "id": "QC-TECH-001",
+      "category": "technical",
+      "title": "基础媒体规格和时长",
+      "severity": "info",
+      "result": "pass",
+      "status": "closed",
+      "timecode": "00:00-01:30",
+      "evidence": "最终文件可识别为90秒、1280x720、24fps的H.264/AAC MP4。",
+      "release_impact": "none"
+    },
+    {
+      "id": "QC-SUB-001",
+      "category": "subtitles",
+      "title": "SRT时长与最终旁白版本匹配",
+      "severity": "info",
+      "result": "pass",
+      "status": "closed",
+      "timecode": "00:00-01:29.400",
+      "evidence": "最终SRT共17条，最后一条结束于01:29.400，与90秒成片边界相符。",
+      "release_impact": "none"
+    },
+    {
+      "id": "QC-VIS-001",
+      "category": "visual",
+      "title": "生成平台水印贯穿成片",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "00:00-01:30",
+      "evidence": "多段抽帧的右下角可见“可灵AI 3.0”平台水印。",
+      "affected_artifacts": [
+        "all Kling generated clips",
+        "naval-equipment-90s-final-subtitled-v7.mp4"
+      ],
+      "required_fix": "使用具备外部交付授权的无水印源片重新合成，并复核全片四角和转场。",
+      "verification": "逐帧水印扫描结果为0，客户审核版和交付母版均无平台标识。"
+    },
+    {
+      "id": "QC-AUD-001",
+      "category": "audio",
+      "title": "整体响度偏低且缺少标准化测量记录",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "00:00-01:30",
+      "evidence_type": "auditory_review_and_missing_measurement",
+      "evidence": "审听表现为整体电平偏低，旁白、音乐和动作音效缺少可审计的LUFS、LRA和True Peak数据；现有报告只写“限制峰值”，未提供测量值。",
+      "measured_values": {
+        "integrated_loudness_lufs": null,
+        "loudness_range_lu": null,
+        "true_peak_dbtp": null
+      },
+      "required_fix": "对最终混音执行EBU R128/ITU-R BS.1770扫描，按确认的播放场景重新平衡旁白、音乐和音效，再做响度标准化。",
+      "verification": "记录并通过最终目标LUFS、LRA和True Peak；在会议室扬声器、笔记本和耳机三种环境复听。"
+    },
+    {
+      "id": "QC-SYNC-001",
+      "category": "audio_video_sync",
+      "title": "主炮、水柱和动作音效存在声画错位",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "00:42-00:54",
+      "evidence": "主炮镜头位于00:42-00:48，水柱镜头位于00:48-00:54；当前主炮音效从00:42开始、素材长度约8秒，无法持续覆盖并逐帧匹配后半段水柱和延迟回声。可见冲击点与声音瞬态没有形成可验证同步。",
+      "required_fix": "以可见炮口焰、水柱起升和回落的精确帧为标记，分别布置炮口瞬态、远场延迟、水柱和回声声层。",
+      "verification": "提供带时间码的声画对齐截图或检测记录，人工逐帧复核误差不超过2帧。"
+    },
+    {
+      "id": "QC-COV-001",
+      "category": "requirement_coverage",
+      "title": "雪天或雨夹雪画面缺失",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "01:18-01:24",
+      "evidence": "复杂天气编队镜头可见低云和雨幕感，但没有可辨识的雪花、积雪、雨夹雪或相应能见度变化。",
+      "requirement_refs": ["REQ-007"],
+      "required_fix": "补充经逐帧复核的雪天或雨夹雪镜头，并确保天气同时影响天空、海面、舰体材质和能见度。",
+      "verification": "需求覆盖表中晴、阴、雨、雪四项均有独立时间码和截图证据。"
+    },
+    {
+      "id": "QC-COV-002",
+      "category": "requirement_coverage",
+      "title": "舰载机启停动作链缺失",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "00:54-01:18",
+      "evidence": "当前画面主要覆盖甲板准备、局部发动机画面、离舰和编队上空通过，没有明确的启动前后状态，也没有停止、关车或停机收束。",
+      "requirement_refs": ["REQ-006"],
+      "required_fix": "以准备、启动、稳定运行、滑行/起飞、停止或停机为可独立核验动作节点重新规划。",
+      "verification": "每个动作节点均有首帧、动作关键帧、尾帧和对应声音提示。"
+    },
+    {
+      "id": "QC-COV-003",
+      "category": "requirement_coverage",
+      "title": "双方编队及相互对抗关系缺失",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "01:18-01:30",
+      "evidence": "结尾仅能识别单组或难以区分阵营的编队航行，没有两个清晰编队，也没有侦察、机动、干扰、拦截、规避或脱离等相互关系。",
+      "requirement_refs": ["REQ-008"],
+      "required_fix": "先获得客户对安全化表达的确认，再补充两支无真实标识的虚构编队和明确的非敏感对抗动作。",
+      "verification": "两个编队在构图、航向或色彩标记上可清晰区分，并存在可见的相互行动因果。"
+    },
+    {
+      "id": "QC-ID-001",
+      "category": "subject_fidelity",
+      "title": "具体舰型标签与生成外形可信度不足",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "00:12-00:30",
+      "evidence": "SH003和SH004被标注为055和052D，但抽帧中的舰艏、舰桥、桅杆、雷达和甲板比例不足以支持专业级具体型号确认。",
+      "requirement_refs": ["REQ-002", "REQ-009"],
+      "required_fix": "使用经公开资料校验的参考约束或授权三维模型重做；无法保证准确时改为泛化舰型名称。",
+      "verification": "由具备舰船识别能力的审核人对照参考图逐项签字。"
+    },
+    {
+      "id": "QC-3D-001",
+      "category": "three_dimensional_model",
+      "title": "三维装备镜头存在不可信外部模块",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "00:30-00:36",
+      "evidence": "三维环绕抽帧可见多个类似悬浮平台或面板的结构，无法与公开舰船外部模块可靠对应。",
+      "requirement_refs": ["REQ-004", "REQ-009"],
+      "required_fix": "以授权或经校验的三维模型替换纯生成几何，并限定高亮层不改变模型结构。",
+      "verification": "模型来源、版本和外部模块清单可追溯，逐帧无穿模、悬浮和结构新增。"
+    },
+    {
+      "id": "QC-VIS-002",
+      "category": "visual_policy",
+      "title": "出现可读舷号109",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "00:42-00:48",
+      "evidence": "主炮镜头后段舰艏可见“109”，违反项目明确的“禁止可读舷号”规则。",
+      "requirement_refs": ["REQ-005", "REQ-009"],
+      "required_fix": "替换源镜头或对舷号区域进行稳定、无闪烁的跟踪清除。",
+      "verification": "OCR扫描和人工逐帧检查均未发现可读舷号。"
+    },
+    {
+      "id": "QC-CONT-001",
+      "category": "continuity",
+      "title": "航母和舰载机跨镜头身份不一致",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "00:54-01:18",
+      "evidence": "准备、起飞、航母环绕和编队飞越镜头中的航母舰体、舰岛、甲板边缘及飞机外形发生明显变化，无法建立同一平台和同一机型的连续动作。",
+      "requirement_refs": ["REQ-006", "REQ-009"],
+      "required_fix": "建立航母和舰载机身份锚点，使用同一参考集、模型版本及首尾帧约束重新生成。",
+      "verification": "跨镜头对比表中的舰体、舰岛、甲板、机翼、起落架和座舱全部通过。"
+    },
+    {
+      "id": "QC-MOTION-001",
+      "category": "editing",
+      "title": "15个5秒源片统一减速为6秒导致节奏机械",
+      "severity": "major",
+      "result": "fail",
+      "status": "open",
+      "timecode": "00:00-01:30",
+      "evidence": "制作脚本对15个约5秒源片统一使用1.2倍PTS扩展到6秒；镜头全部等长，动作段和观察段没有基于内容设置节奏。",
+      "required_fix": "按有效内容区间设置3至8秒可变时长，必要时补充源片，不通过统一减速凑满90秒。",
+      "verification": "提交镜头时长理由、入出点和动作完整性检查，成片节奏审看通过。"
+    },
+    {
+      "id": "QC-RIGHTS-001",
+      "category": "rights",
+      "title": "生成视频、参考素材和语音商业授权未确认",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "00:00-01:30",
+      "evidence": "现有记录仅标注internal或演示使用；15个生成片段含平台水印，模型账户、生成条款、无水印授权、参考图许可和Microsoft Huihui语音外部使用权限均没有可归档证明。",
+      "required_fix": "按rights-manifest-v8.json逐项获得许可证明或替换素材。",
+      "verification": "所有纳入交付的资产rights_status为cleared，许可文件有归档位置和审核人。"
+    },
+    {
+      "id": "QC-DEL-001",
+      "category": "delivery",
+      "title": "缺少可外部交付的无水印高清母版和完整包",
+      "severity": "blocking",
+      "result": "fail",
+      "status": "open",
+      "timecode": "not_applicable",
+      "evidence": "当前主视频为1280x720且含水印；没有无字幕净版、VTT、最终混音测量报告、授权证明、带校验值的真实交付包。",
+      "required_fix": "按delivery-manifest-v8.json的缺失项重新渲染和打包。",
+      "verification": "交付清单全部required项存在、校验值匹配且所有门禁通过。"
+    }
+  ],
+  "required_signoffs": [
+    {
+      "role": "内容负责人",
+      "status": "pending",
+      "scope": "需求覆盖和AI范围调整"
+    },
+    {
+      "role": "舰船专业审核",
+      "status": "pending",
+      "scope": "舰型、装备结构和动作可信度"
+    },
+    {
+      "role": "声音负责人",
+      "status": "pending",
+      "scope": "LUFS、True Peak和声画同步"
+    },
+    {
+      "role": "版权与合规负责人",
+      "status": "pending",
+      "scope": "模型、素材、语音和公开发布许可"
+    },
+    {
+      "role": "客户审核人",
+      "status": "pending",
+      "scope": "最终V8或更高版本成片"
+    }
+  ]
+}
