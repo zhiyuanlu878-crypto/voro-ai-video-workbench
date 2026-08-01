@@ -1,0 +1,380 @@
+{
+  "schema": "voro.requirement-coverage/1.0",
+  "document_version": "V8",
+  "created_at": "2026-08-01T00:00:00+08:00",
+  "project": {
+    "name": "海洋舰船装备效果演示",
+    "source_final_version": "V7",
+    "target_duration_seconds": 90,
+    "target_ratio": "16:9",
+    "intended_use": "企业客户功能演示与内部审片"
+  },
+  "source_request": "重点显示水面舰船装备效果，国内外主力列装型号，重点体现在海洋大环境中航行效果、舰船三维模型效果、舰船装备开炮效果、舰载机启停效果。海洋环境能体现不同的海浪、以及阴晴雨雪等天气效果。在此基础上，展现不同编队在海洋环境下的相互对战效果，画面要求尽量逼真。",
+  "audit_basis": [
+    "V7最终成片逐段抽帧审核",
+    "15个入选视频片段及其时间线映射",
+    "最终17条SRT字幕",
+    "旁白、音乐与动作音效资产",
+    "V6/V7制作脚本和原型中的镜头验收标准"
+  ],
+  "release_decision": "blocked",
+  "release_reason": "原始需求尚未完整覆盖，且AI调整范围未获得客户确认；详见缺失的雪天、完整舰载机启停、双方编队对抗及画面真实性阻断项。",
+  "summary": {
+    "requirement_count": 9,
+    "covered": 0,
+    "covered_with_quality_blocker": 1,
+    "partial": 5,
+    "missing": 2,
+    "failed": 1,
+    "customer_confirmation_required": 2,
+    "blocking_requirements": [
+      "REQ-002",
+      "REQ-004",
+      "REQ-005",
+      "REQ-006",
+      "REQ-007",
+      "REQ-008",
+      "REQ-009"
+    ]
+  },
+  "status_definitions": {
+    "covered": "内容和质量均达到验收标准",
+    "covered_with_quality_blocker": "内容存在，但当前媒体质量阻止交付",
+    "partial": "只覆盖了需求的一部分",
+    "missing": "最终成片中没有可核验成果",
+    "failed": "已有成果与明确验收标准冲突"
+  },
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "priority": "must",
+      "original_requirement": "重点显示水面舰船装备效果",
+      "ai_interpretation": "以现代水面舰艇航行、三维外观、主炮动作、雷达甲板和编队航行为主要内容。",
+      "ai_adjustment": "无重大范围调整。",
+      "customer_confirmation": {
+        "status": "not_required",
+        "note": "AI解释与原需求基本一致。"
+      },
+      "coverage_status": "partial",
+      "evidence": [
+        {
+          "shot_id": "SH001-SH009",
+          "timecode": "00:00-00:54",
+          "artifact": "naval-equipment-90s-final-subtitled-v7.mp4",
+          "note": "包含航行、外观、三维示意、甲板、主炮和水柱。"
+        }
+      ],
+      "gaps": [
+        "装备展示以生成画面为主，舰型与装备结构准确性不足",
+        "三维模块和主炮动作存在独立质量阻断项"
+      ],
+      "acceptance_criteria": [
+        "每类装备与主体身份一致",
+        "装备结构不漂移、不融合、不产生虚构模块",
+        "无生成平台水印和可读错误标识"
+      ],
+      "release_gate": "blocked_by_quality"
+    },
+    {
+      "id": "REQ-002",
+      "priority": "must",
+      "original_requirement": "展示国内外主力列装型号",
+      "ai_interpretation": "以055、052D、伯克级为主要画面标签，并在资料层参考Type 45和摩耶级。",
+      "ai_adjustment": "从广泛的国内外主力列装型号收窄为三种主要视觉标签；Type 45和摩耶级没有进入最终画面。",
+      "customer_confirmation": {
+        "status": "not_confirmed",
+        "required_action": "确认代表型号范围，或补足客户指定的完整型号清单。"
+      },
+      "coverage_status": "partial",
+      "evidence": [
+        {
+          "shot_id": "SH003",
+          "timecode": "00:12-00:18",
+          "artifact": "S03-kling.mp4",
+          "note": "原型标注为055型大型驱逐舰。"
+        },
+        {
+          "shot_id": "SH004",
+          "timecode": "00:18-00:24",
+          "artifact": "S04-kling.mp4",
+          "note": "原型标注为052D型驱逐舰。"
+        },
+        {
+          "shot_id": "SH005",
+          "timecode": "00:24-00:30",
+          "artifact": "S05-kling.mp4",
+          "note": "原型标注为国外主力驱逐舰/伯克级参考。"
+        }
+      ],
+      "gaps": [
+        "专业抽帧审核无法确认SH003和SH004达到具体型号外形准确度",
+        "旁白没有清楚介绍型号名称、国别和公开外观差异",
+        "Type 45和摩耶级仅存在资料引用，没有画面成果"
+      ],
+      "acceptance_criteria": [
+        "客户确认型号清单",
+        "每个具体型号经公开外观参考或授权三维模型校验",
+        "无法保证准确时改用泛化名称，不直接标具体型号"
+      ],
+      "release_gate": "blocked"
+    },
+    {
+      "id": "REQ-003",
+      "priority": "must",
+      "original_requirement": "重点体现舰船在海洋大环境中的航行效果",
+      "ai_interpretation": "以超远景海洋尺度、强风浪破浪、侧向航行、航母和编队尾流体现航行。",
+      "ai_adjustment": "无重大范围调整。",
+      "customer_confirmation": {
+        "status": "not_required"
+      },
+      "coverage_status": "covered_with_quality_blocker",
+      "evidence": [
+        {
+          "shot_id": "SH001-SH005",
+          "timecode": "00:00-00:30",
+          "artifact": "V7 final",
+          "note": "包含海洋建立、强风浪、国内外舰艇航行。"
+        },
+        {
+          "shot_id": "SH012-SH015",
+          "timecode": "01:06-01:30",
+          "artifact": "V7 final",
+          "note": "包含航母海洋尺度、海空编队和远海收束。"
+        }
+      ],
+      "gaps": [
+        "所有主要生成视频含平台水印",
+        "部分尾流、吃水和舰体比例仍需逐帧复核"
+      ],
+      "acceptance_criteria": [
+        "无水印",
+        "地平线、吃水、尾流与航向连续",
+        "同一主体跨镜头外形稳定"
+      ],
+      "release_gate": "blocked_by_quality"
+    },
+    {
+      "id": "REQ-004",
+      "priority": "must",
+      "original_requirement": "展示舰船三维模型效果",
+      "ai_interpretation": "在暗色空间中对驱逐舰外观级三维模型进行环绕，高亮舰桥、雷达、主炮和甲板区域。",
+      "ai_adjustment": "限定为公开外观级三维，不展示内部结构。",
+      "customer_confirmation": {
+        "status": "not_confirmed",
+        "required_action": "确认只展示外观级三维是否满足客户需求。"
+      },
+      "coverage_status": "partial",
+      "evidence": [
+        {
+          "shot_id": "SH006",
+          "timecode": "00:30-00:36",
+          "artifact": "S06-kling1.mp4",
+          "note": "存在三维环绕镜头。"
+        }
+      ],
+      "gaps": [
+        "抽帧显示多处类似悬浮面板和不可信外部模块",
+        "缺少部件名称、结构关系标注和经校验的模型来源"
+      ],
+      "acceptance_criteria": [
+        "采用授权或经公开资料校验的三维模型",
+        "外部模块位置、数量和比例可信",
+        "高亮效果贴合模型表面，不生成悬浮结构"
+      ],
+      "release_gate": "blocked"
+    },
+    {
+      "id": "REQ-005",
+      "priority": "must",
+      "original_requirement": "展示舰船装备开炮效果",
+      "ai_interpretation": "采用主炮单次开火和远处海面水柱两个连续镜头表现动作因果。",
+      "ai_adjustment": "不展示目标、命中或毁伤，只表现公开演示式开火和海面反馈。",
+      "customer_confirmation": {
+        "status": "not_confirmed",
+        "required_action": "确认不展示目标和毁伤的安全化表达。"
+      },
+      "coverage_status": "partial",
+      "evidence": [
+        {
+          "shot_id": "SH008",
+          "timecode": "00:42-00:48",
+          "artifact": "S07-kling.mp4",
+          "note": "主炮开火镜头。"
+        },
+        {
+          "shot_id": "SH009",
+          "timecode": "00:48-00:54",
+          "artifact": "S06-kling2.mp4",
+          "note": "海面水柱反馈镜头。"
+        }
+      ],
+      "gaps": [
+        "炮塔转向、停顿、后坐、复位没有形成完整可核验链条",
+        "炮声、水柱和画面冲击点存在声画错位",
+        "开火镜头出现可读舷号109，与项目禁止项冲突",
+        "炮口焰和烟团尺度偏夸张"
+      ],
+      "acceptance_criteria": [
+        "单镜头或严格匹配剪辑完整呈现动作因果",
+        "音效与可见炮口焰、水柱逐帧同步",
+        "无可读舷号和错误结构"
+      ],
+      "release_gate": "blocked"
+    },
+    {
+      "id": "REQ-006",
+      "priority": "must",
+      "original_requirement": "展示舰载机启停效果",
+      "ai_interpretation": "以甲板准备、发动机推力、滑行、离舰和编队上空通过表现舰载航空程序。",
+      "ai_adjustment": "将启停扩展为准备—起飞—飞越，但没有明确停机或关停动作。",
+      "customer_confirmation": {
+        "status": "not_confirmed",
+        "required_action": "确认启停所需动作范围，至少定义启动前、启动后、停止前和停止后的可视状态。"
+      },
+      "coverage_status": "missing",
+      "evidence": [
+        {
+          "shot_id": "SH010-SH013",
+          "timecode": "00:54-01:18",
+          "artifact": "V7 final",
+          "note": "可见准备、局部甲板活动、起飞/飞越，但没有完整启动和停止动作链。"
+        }
+      ],
+      "gaps": [
+        "没有明确的发动机启动前后状态",
+        "没有停止、关车、轮挡恢复或停机收束",
+        "航母、舰岛、舰载机外形在镜头间不一致"
+      ],
+      "acceptance_criteria": [
+        "启动、滑行、起飞、返场或停止至少各有明确可见状态",
+        "舰载机机翼、起落架、座舱和甲板接触关系连续",
+        "甲板作业不出现人员或装备形变"
+      ],
+      "release_gate": "blocked"
+    },
+    {
+      "id": "REQ-007",
+      "priority": "must",
+      "original_requirement": "体现不同海浪以及阴晴雨雪等天气效果",
+      "ai_interpretation": "以晴天、强风浪、低云、雨幕、海雾和雨夹雪构建天气变化。",
+      "ai_adjustment": "无重大范围调整，但最终画面没有实现全部天气。",
+      "customer_confirmation": {
+        "status": "not_required"
+      },
+      "coverage_status": "partial",
+      "evidence": [
+        {
+          "shot_id": "SH001-SH002",
+          "timecode": "00:00-00:12",
+          "artifact": "V7 final",
+          "note": "包含晴/多云海面和强风浪。"
+        },
+        {
+          "shot_id": "SH007",
+          "timecode": "00:36-00:42",
+          "artifact": "S08-kling.mp4",
+          "note": "包含湿润甲板、低云和雨雾感。"
+        },
+        {
+          "shot_id": "SH014",
+          "timecode": "01:18-01:24",
+          "artifact": "S11-kling.mp4",
+          "note": "包含低云和远海编队，但没有清晰可辨的雪。"
+        }
+      ],
+      "gaps": [
+        "最终成片没有可核验的雪天或雨夹雪",
+        "天气变化没有始终同时影响天空、海面、舰体材质和能见度"
+      ],
+      "acceptance_criteria": [
+        "晴、阴、雨、雪均有独立可辨的镜头证据",
+        "海浪至少覆盖平静、中浪和强风浪",
+        "天气与风向、浪向、烟雾和能见度保持一致"
+      ],
+      "release_gate": "blocked"
+    },
+    {
+      "id": "REQ-008",
+      "priority": "must",
+      "original_requirement": "展现不同编队在海洋环境下的相互对战效果",
+      "ai_interpretation": "表现两支无国籍虚构编队的远距离非接触演练，不预设胜负。",
+      "ai_adjustment": "将相互对战收窄为非接触机动，并取消目标、距离、命中、毁伤和胜负表达。",
+      "customer_confirmation": {
+        "status": "not_confirmed",
+        "required_action": "必须由客户明确接受安全化改写，或重新定义可展示的虚构对抗动作。"
+      },
+      "coverage_status": "missing",
+      "evidence": [
+        {
+          "shot_id": "SH014-SH015",
+          "timecode": "01:18-01:30",
+          "artifact": "V7 final",
+          "note": "仅看到单组或难以区分阵营的编队航行与远景收束。"
+        }
+      ],
+      "gaps": [
+        "没有两支视觉上可区分的编队",
+        "没有侦察、机动、干扰、拦截、规避或脱离等对抗关系",
+        "客户未确认从对战改为非接触演练"
+      ],
+      "acceptance_criteria": [
+        "至少两个无真实标识的虚构编队可清楚区分",
+        "通过航向、动作和剪辑建立双方关系",
+        "不展示真实战术参数也能形成明确对抗叙事",
+        "范围调整必须获得客户确认"
+      ],
+      "release_gate": "blocked"
+    },
+    {
+      "id": "REQ-009",
+      "priority": "must",
+      "original_requirement": "画面要求尽量逼真",
+      "ai_interpretation": "采用写实军事纪录片风格，强调真实海水物理、主体一致性和克制摄影。",
+      "ai_adjustment": "无重大范围调整。",
+      "customer_confirmation": {
+        "status": "not_required"
+      },
+      "coverage_status": "failed",
+      "evidence": [
+        {
+          "shot_id": "ALL",
+          "timecode": "00:00-01:30",
+          "artifact": "V7 final",
+          "note": "多个镜头可见生成平台水印，具体舰型、三维结构、航母和舰载机存在连续性或准确性风险。"
+        }
+      ],
+      "gaps": [
+        "全片存在可灵AI水印",
+        "具体舰型准确度不足",
+        "三维装备存在虚构结构",
+        "航母和舰载机跨镜头不一致",
+        "部分动作和声画因果不可信",
+        "最终仅为1280×720演示规格"
+      ],
+      "acceptance_criteria": [
+        "无平台水印",
+        "主体、装备和环境连续性通过逐帧复核",
+        "型号标签有资料或授权模型支撑",
+        "输出至少达到无水印1080p客户审核规格"
+      ],
+      "release_gate": "blocked"
+    }
+  ],
+  "required_customer_decisions": [
+    {
+      "id": "DEC-001",
+      "question": "是否接受将相互对战调整为两支无国籍虚构编队的非接触对抗演练？",
+      "status": "pending"
+    },
+    {
+      "id": "DEC-002",
+      "question": "国内外主力列装型号的最终清单和准确度标准是什么？",
+      "status": "pending"
+    },
+    {
+      "id": "DEC-003",
+      "question": "舰船三维展示只覆盖公开外观级结构是否可接受？",
+      "status": "pending"
+    }
+  ]
+}

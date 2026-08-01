@@ -1,91 +1,170 @@
 import assert from "node:assert/strict";
-import { access, readFile, readdir } from "node:fs/promises";
+import { access, readFile, stat } from "node:fs/promises";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
-const templateRoot = new URL("../", import.meta.url);
-const previewRoot = new URL("../app/_sites-preview/", import.meta.url);
+const root = new URL("../", import.meta.url);
+const prototypeUrl = new URL("../public/prototype.html", import.meta.url);
 
 async function render() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
-
   return worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
+    new Request("http://localhost/", { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
   );
 }
 
-test("server-renders the starter loading skeleton", async () => {
+test("serves the VORO workbench shell with clean metadata", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-
   const html = await response.text();
-  assert.match(html, developmentPreviewMeta);
-  assert.match(html, /<title>Your site is taking shape<\/title>/i);
-  assert.match(html, /Building your site/);
-  assert.match(html, /Your site is taking shape/);
-  assert.match(
-    html,
-    /Your first version will appear here automatically when it’s ready\./,
-  );
-  assert.doesNotMatch(html, /Codex/);
-  assert.match(html, /react-loading-skeleton/);
-  assert.match(html, /role="status"/);
+  assert.match(html, /VORO · AI 视频制作工作台/);
+  assert.match(html, /<iframe[^>]+src="\/prototype\.html"/i);
+  assert.doesNotMatch(html, /Your site is taking shape|codex-preview|瑙嗛|鍒朵綔/);
 });
 
-test("keeps the loading skeleton scoped and disposable", async () => {
-  const [preview, css, page, layout, packageJson, files] = await Promise.all([
-    readFile(new URL("SkeletonPreview.tsx", previewRoot), "utf8"),
-    readFile(new URL("preview.css", previewRoot), "utf8"),
-    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../package.json", import.meta.url), "utf8"),
-    readdir(previewRoot),
-  ]);
+test("starts from a blank project and preserves the click-driven production chain", async () => {
+  const html = await readFile(prototypeUrl, "utf8");
+  assert.match(html, /创建空白项目/);
+  assert.match(html, /把客户需求完整粘贴到这里/);
+  assert.match(html, /retireLegacyCompletedDemo\(\);if\(!location\.hash\)history\.replaceState\(null,'','#projects'\)/);
+  for (const action of [
+    "save-requirements",
+    "ai-analyze",
+    "accept-requirements",
+    "confirm-requirement-adjustments",
+    "ai-plan",
+    "lock-plan",
+    "ai-generate-structure",
+    "confirm-storyboard",
+    "batch-generate-keyframes",
+    "batch-generate-videos",
+    "adopt-lock-all",
+    "auto-sequence",
+    "batch-generate-tracks",
+    "save-timeline",
+    "render-review",
+    "run-qc",
+    "submit-review",
+  ]) assert.match(html, new RegExp(`data-action=["']${action}["']|a==='${action}'`));
+});
 
-  assert.deepEqual(files.sort(), ["SkeletonPreview.tsx", "preview.css"]);
-  assert.match(preview, /from "react-loading-skeleton"/);
-  assert.match(preview, /baseColor="#eceae7"/);
-  assert.match(preview, /highlightColor="#f9f8f6"/);
-  assert.match(preview, /duration=\{2\.8\}/);
-  assert.match(preview, /sites-skeleton-search-placeholder/);
-  assert.match(packageJson, /"react-loading-skeleton": "3\.5\.0"/);
+test("discloses replay versus live generation and never labels simulation as connected", async () => {
+  const html = await readFile(prototypeUrl, "utf8");
+  assert.match(html, /演示回放模式：使用已归档的确定性成果/);
+  assert.match(html, /实时运行配置：本单文件原型只保存模型与路由配置/);
+  assert.match(html, /renderAdapterReady:false/);
+  assert.match(html, /simulation:'演示模拟'/);
+  assert.match(html, /mode==='live'&&!p\?\.generation\?\.providerReady/);
+  assert.match(html, /m\.connectionType==='simulation'\?'simulation'/);
+  assert.doesNotMatch(html, /m\.connectionType==='simulation'\|\|m\.endpoint\?'connected'/);
+});
 
-  const shellIndex = preview.indexOf('className="sites-skeleton-shell"');
-  const statusIndex = preview.indexOf('className="sites-skeleton-status"');
-  assert.ok(shellIndex >= 0 && statusIndex > shellIndex);
-  assert.match(css, /position:\s*fixed/);
-  assert.match(css, /inset:\s*0/);
-  assert.match(css, /opacity:\s*0\.52/);
-  assert.match(css, /prefers-reduced-motion:\s*reduce/);
-  assert.doesNotMatch(css, /#020617|canvas|pets|progress/i);
-  assert.doesNotMatch(
-    preview,
-    /loading-spinner|status-mark|status-progress|canvas|cookie|random/i,
-  );
+test("implements requirement traceability and immutable stage versions", async () => {
+  const html = await readFile(prototypeUrl, "utf8");
+  assert.match(html, /原始需求覆盖与范围确认/);
+  assert.match(html, /function requirementGate\(p\)/);
+  assert.match(html, /function createStageVersion\(p,stage/);
+  assert.match(html, /function cloneLockedVersionAsDraft\(p,stage/);
+  assert.match(html, /需求范围尚未确认/);
+  assert.match(html, /基于分镜V/);
+});
 
-  assert.match(page, /export const metadata:\s*Metadata/);
-  assert.match(page, /"codex-preview": "development"/);
-  assert.match(page, /<SkeletonPreview \/>/);
-  assert.match(layout, /title:\s*"Starter Project"/);
-  assert.doesNotMatch(layout, /codex-preview|_sites-preview|themeColor|\bViewport\b/);
-  assert.doesNotMatch(css, /(^|\s)(html|body)\s*\{/m);
+test("uses a shot list, detail inspector, editable prompts and persistent queue", async () => {
+  const html = await readFile(prototypeUrl, "utf8");
+  assert.match(html, /function shotsPageV8\(\)/);
+  assert.match(html, /class="shot-workbench"/);
+  assert.match(html, /data-shot-prompt/);
+  assert.match(html, /function shotJobQueueHtml\(p\)/);
+  assert.match(html, /基于锁定版创建新候选/);
+  assert.match(html, /shots:shotsPageV8/);
+});
 
-  await assert.rejects(
-    access(new URL("public/_sites-preview", templateRoot)),
-  );
+test("shows evidence-backed QC and blocks unsupported external delivery", async () => {
+  const html = await readFile(prototypeUrl, "utf8");
+  assert.match(html, /雪天镜头缺失/);
+  assert.match(html, /商用授权材料未归档/);
+  assert.match(html, /问题必须包含时间码、证据、置信度、负责人和处理状态/);
+  assert.match(html, /外部交付门禁/);
+  assert.match(html, /下载V8内部审片包/);
+  assert.match(html, /assignee:'client-reviewer'/);
+  assert.doesNotMatch(html, /qcSummary=\{passed:32,warningsFixed:3,blocking:0\}/);
+});
+
+test("ships the V8 master, web playback copy, subtitles, reports and real review package", async () => {
+  const required = [
+    "public/production/output/naval-equipment-90s-final-v8.mp4",
+    "public/production/output/naval-equipment-90s-final-v8-web.mp4",
+    "public/production/output/naval-equipment-90s-final-v8.srt",
+    "public/production/output/requirement-coverage-v8.json",
+    "public/production/output/qc-report-v8.json",
+    "public/production/output/rights-manifest-v8.json",
+    "public/production/output/delivery-manifest-v8.json",
+    "public/production/output/voro-naval-delivery-v8.zip",
+    "public/media/audio/narration-documentary-zh-v7-final.wav",
+    "public/media/audio/music-ocean-documentary.wav",
+  ];
+  await Promise.all(required.map((path) => access(new URL(path, root))));
+  const web = await stat(new URL("public/production/output/naval-equipment-90s-final-v8-web.mp4", root));
+  const master = await stat(new URL("public/production/output/naval-equipment-90s-final-v8.mp4", root));
+  assert.ok(web.size < master.size, "web playback copy is smaller than the master");
+  for (const name of ["requirement-coverage-v8.json", "qc-report-v8.json", "rights-manifest-v8.json", "delivery-manifest-v8.json"]) {
+    JSON.parse(await readFile(new URL(`public/production/output/${name}`, root), "utf8"));
+  }
+});
+
+test("the embedded application script is syntactically valid", async () => {
+  const html = await readFile(prototypeUrl, "utf8");
+  const match = html.match(/<script id="voroApp">([\s\S]*?)<\/script>/);
+  assert.ok(match, "voroApp script is present");
+  assert.doesNotThrow(() => new Function(match[1]));
+});
+
+test("keeps timeline saving and render readiness consistent and explainable", async () => {
+  const html = await readFile(prototypeUrl, "utf8");
+  assert.match(html, /function editRenderReadiness\(p\)/);
+  assert.match(html, /data-testid="render-readiness"/);
+  assert.match(html, /data-testid="render-review-button"/);
+  assert.match(html, /key:'duration'[\s\S]*?blocking:false/);
+  assert.match(html, /const readiness=editRenderReadiness\(p\);if\(!readiness\.ready\)/);
+  assert.match(html, /rendering\|\|tracksGenerating\|\|!t\.clips\.length\|\|!t\.dirty&&readiness\.fingerprintMatches/);
+  assert.match(html, /previousStatus==='ready'\?'ready':'failed'/);
+  assert.match(html, /function reflowTimeline\(p\)/);
+  assert.match(html, /function markTimelineTracksStale\(p\)/);
+  assert.match(html, /function timelineStructureFingerprint\(p\)/);
+  assert.match(html, /function timelineFingerprint\(p\)/);
+  assert.match(html, /function replayFixtureCompatibility\(p\)/);
+  assert.match(html, /function reviewMatchesSavedTimeline\(p\)/);
+  assert.match(html, /const NAVAL_V8_FIXTURE=Object\.freeze/);
+  assert.match(html, /savedFingerprint/);
+  assert.match(html, /versionSequence/);
+  assert.match(html, /sourceMismatches/);
+  assert.match(html, /function reflectTimelineDraftUi\(p\)/);
+  assert.match(html, /时间线 V\$\{p\.timeline\.savedVersion\} 已保存/);
+  assert.match(html, /function interruptPersistedJob\(job\)[\s\S]*?job\.status='interrupted'/);
+  assert.match(html, /j\?\.status==='interrupted'/);
+  assert.match(html, /reviewCurrent=reviewMatchesSavedTimeline\(p\)/);
+  assert.match(html, /archiveCurrentReview\(p,`上游/);
+  const autoSequence = html.match(/if\(a==='auto-sequence'\)\{[^\n]+/);
+  assert.ok(autoSequence, "auto-sequence handler exists");
+  assert.doesNotMatch(autoSequence[0], /savedVersion=0/);
+  assert.match(autoSequence[0], /markTimelineTracksStale\(p\)/);
+  assert.match(html, /shots:shotsPageV8,edit:editPage,delivery:deliveryPageV8/);
+  const fixIssue = html.match(/if\(a==='fix-issue'\)\{[^\n]+/);
+  assert.ok(fixIssue, "fix-issue handler exists");
+  assert.doesNotMatch(fixIssue[0], /reviewVersion=/);
+  assert.match(fixIssue[0], /fixCandidate=/);
+  assert.doesNotMatch(html, /p\.duration&&Math\.abs\(total-Number\(p\.duration\)\)>\.2/);
+});
+
+test("keeps desktop and mobile workbench pages scrollable and readable", async () => {
+  const html = await readFile(prototypeUrl, "utf8");
+  assert.match(html, /\.main\{height:100%;min-width:0;min-height:0;overflow:hidden/);
+  assert.match(html, /\.content\{flex:1 1 auto;min-height:0;overflow-y:auto/);
+  assert.match(html, /\.nav\{[^}]*overflow-y:auto[^}]*min-height:0/);
+  assert.match(html, /@media\(max-width:850px\)[\s\S]*?\.content\{min-height:0;overflow:visible/);
+  assert.match(html, /body\.presentation-mode/);
 });
