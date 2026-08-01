@@ -122,6 +122,25 @@ test("the embedded application script is syntactically valid", async () => {
   assert.doesNotThrow(() => new Function(match[1]));
 });
 
+test("keeps timeline saving and render readiness consistent and explainable", async () => {
+  const html = await readFile(prototypeUrl, "utf8");
+  assert.match(html, /function editRenderReadiness\(p\)/);
+  assert.match(html, /data-testid="render-readiness"/);
+  assert.match(html, /data-testid="render-review-button"/);
+  assert.match(html, /key:'duration'[\s\S]*?blocking:false/);
+  assert.match(html, /const readiness=editRenderReadiness\(p\);if\(!readiness\.ready\)/);
+  assert.match(html, /rendering\|\|tracksGenerating\|\|!t\.clips\.length\|\|!t\.dirty/);
+  assert.match(html, /previousStatus==='ready'\?'ready':'failed'/);
+  assert.match(html, /function reflowTimeline\(p\)/);
+  assert.match(html, /function markTimelineTracksStale\(p\)/);
+  assert.match(html, /function timelineStructureFingerprint\(p\)/);
+  assert.match(html, /function reflectTimelineDraftUi\(p\)/);
+  assert.match(html, /时间线 V\$\{p\.timeline\.savedVersion\} 已保存/);
+  assert.match(html, /function interruptPersistedJob\(job\)[\s\S]*?job\.status='interrupted'/);
+  assert.match(html, /j\?\.status==='interrupted'/);
+  assert.doesNotMatch(html, /p\.duration&&Math\.abs\(total-Number\(p\.duration\)\)>\.2/);
+});
+
 test("keeps desktop and mobile workbench pages scrollable and readable", async () => {
   const html = await readFile(prototypeUrl, "utf8");
   assert.match(html, /\.main\{height:100%;min-width:0;min-height:0;overflow:hidden/);
